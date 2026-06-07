@@ -202,6 +202,10 @@
 			);
 			mainGroup = CE7FFD6C2FD5C1CF002322FF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CEC0E49A2FD6EDEE00A841AE /* XCRemoteSwiftPackageReference "FeedKit" */,
+				CEC0E49B2FD6EE0000A841AE /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CE7FFD762FD5C1D0002322FF /* Products */;
 			projectDirPath = "";
@@ -585,6 +589,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEC0E49A2FD6EDEE00A841AE /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.4.0;
+			};
+		};
+		CEC0E49B2FD6EE0000A841AE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = CE7FFD6D2FD5C1CF002322FF /* Project object */;
 }
