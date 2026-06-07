@@ -1,0 +1,54 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target arm64-apple-ios15.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name TuneURL
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import AVFoundation
+import AudioToolbox
+import Foundation
+import Swift
+@_exported import TuneURL
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers public class Detector {
+  public typealias CompletionHandler = ([TuneURL.Match]) -> Swift.Void
+  public static func setTrigger(_ audioFileURL: Foundation.URL)
+  public static func processAudio(for audioFileURL: Foundation.URL, completionHandler: @escaping TuneURL.Detector.CompletionHandler)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Listener {
+  public typealias AudioBufferHandler = (AVFAudio.AVAudioPCMBuffer) -> Swift.Void
+  public typealias MatchHandler = (TuneURL.Match) -> Swift.Void
+  public static var isListening: Swift.Bool {
+    get
+  }
+  public static var audioBufferDelegate: TuneURL.Listener.AudioBufferHandler? {
+    get
+    set
+  }
+  public static func setTrigger(_ audioFileURL: Foundation.URL)
+  public static func startListening(matchHandler: @escaping (TuneURL.Match) -> Swift.Void)
+  public static func stopListening()
+  @objc deinit
+}
+public class StreamDetector {
+  public var matchCallback: ((TuneURL.Match) -> Swift.Void)?
+  public init(_ triggerURL: Foundation.URL)
+  @objc deinit
+  public func append(_ buffer: AVFAudio.AVAudioPCMBuffer)
+  public func reset()
+}
+@_hasMissingDesignatedInitializers public class Match : Swift.Codable {
+  final public let description: Swift.String
+  final public let id: Swift.Int
+  final public let info: Swift.String
+  final public let matchPercentage: Swift.Int
+  final public let name: Swift.String
+  final public let time: Swift.Float
+  final public let type: Swift.String
+  public var fingerprintVersion: Swift.String?
+  required public init(from decoder: any Swift.Decoder) throws
+  public func prettyDescription() -> Swift.String
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
