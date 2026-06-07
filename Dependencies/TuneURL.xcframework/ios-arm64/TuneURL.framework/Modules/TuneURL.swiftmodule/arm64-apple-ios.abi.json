@@ -1,0 +1,1639 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TuneURL",
+    "printedName": "TuneURL",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "Import",
+        "name": "Fingerprint_Private",
+        "printedName": "Fingerprint_Private",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "Import",
+        "name": "Fingerprint_Private",
+        "printedName": "Fingerprint_Private",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AudioToolbox",
+        "printedName": "AudioToolbox",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "Import",
+        "name": "Fingerprint_Private",
+        "printedName": "Fingerprint_Private",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "Import",
+        "name": "Fingerprint_Private",
+        "printedName": "Fingerprint_Private",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Detector",
+        "printedName": "Detector",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "setTrigger",
+            "printedName": "setTrigger(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URL",
+                "printedName": "Foundation.URL",
+                "usr": "s:10Foundation3URLV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL8DetectorC10setTriggeryy10Foundation0B0VFZ",
+            "mangledName": "$s7TuneURL8DetectorC10setTriggeryy10Foundation0B0VFZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "processAudio",
+            "printedName": "processAudio(for:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URL",
+                "printedName": "Foundation.URL",
+                "usr": "s:10Foundation3URLV"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "([TuneURL.Match]) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[TuneURL.Match]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Match",
+                        "printedName": "TuneURL.Match",
+                        "usr": "s:7TuneURL5MatchC"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL8DetectorC12processAudio3for17completionHandlery10Foundation0B0V_ySayAA5MatchCGctFZ",
+            "mangledName": "$s7TuneURL8DetectorC12processAudio3for17completionHandlery10Foundation0B0V_ySayAA5MatchCGctFZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:7TuneURL8DetectorC",
+        "mangledName": "$s7TuneURL8DetectorC",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Listener",
+        "printedName": "Listener",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "isListening",
+            "printedName": "isListening",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL8ListenerC11isListeningSbvpZ",
+            "mangledName": "$s7TuneURL8ListenerC11isListeningSbvpZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL8ListenerC11isListeningSbvgZ",
+                "mangledName": "$s7TuneURL8ListenerC11isListeningSbvgZ",
+                "moduleName": "TuneURL",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "audioBufferDelegate",
+            "printedName": "audioBufferDelegate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((AVFAudio.AVAudioPCMBuffer) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AVFAudio.AVAudioPCMBuffer) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AVAudioPCMBuffer",
+                        "printedName": "AVFAudio.AVAudioPCMBuffer",
+                        "usr": "c:objc(cs)AVAudioPCMBuffer"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvpZ",
+            "mangledName": "$s7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvpZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((AVFAudio.AVAudioPCMBuffer) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(AVFAudio.AVAudioPCMBuffer) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "AVAudioPCMBuffer",
+                            "printedName": "AVFAudio.AVAudioPCMBuffer",
+                            "usr": "c:objc(cs)AVAudioPCMBuffer"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvgZ",
+                "mangledName": "$s7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvgZ",
+                "moduleName": "TuneURL",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((AVFAudio.AVAudioPCMBuffer) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(AVFAudio.AVAudioPCMBuffer) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "AVAudioPCMBuffer",
+                            "printedName": "AVFAudio.AVAudioPCMBuffer",
+                            "usr": "c:objc(cs)AVAudioPCMBuffer"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvsZ",
+                "mangledName": "$s7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvsZ",
+                "moduleName": "TuneURL",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvMZ",
+                "mangledName": "$s7TuneURL8ListenerC19audioBufferDelegateySo16AVAudioPCMBufferCcSgvMZ",
+                "moduleName": "TuneURL",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "setTrigger",
+            "printedName": "setTrigger(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URL",
+                "printedName": "Foundation.URL",
+                "usr": "s:10Foundation3URLV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL8ListenerC10setTriggeryy10Foundation0B0VFZ",
+            "mangledName": "$s7TuneURL8ListenerC10setTriggeryy10Foundation0B0VFZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "startListening",
+            "printedName": "startListening(matchHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(TuneURL.Match) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Match",
+                    "printedName": "TuneURL.Match",
+                    "usr": "s:7TuneURL5MatchC"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL8ListenerC14startListening12matchHandleryyAA5MatchCc_tFZ",
+            "mangledName": "$s7TuneURL8ListenerC14startListening12matchHandleryyAA5MatchCc_tFZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "stopListening",
+            "printedName": "stopListening()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL8ListenerC13stopListeningyyFZ",
+            "mangledName": "$s7TuneURL8ListenerC13stopListeningyyFZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:7TuneURL8ListenerC",
+        "mangledName": "$s7TuneURL8ListenerC",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL"
+      },
+      {
+        "kind": "Import",
+        "name": "Fingerprint_Private",
+        "printedName": "Fingerprint_Private",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "StreamDetector",
+        "printedName": "StreamDetector",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "matchCallback",
+            "printedName": "matchCallback",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((TuneURL.Match) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(TuneURL.Match) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Match",
+                        "printedName": "TuneURL.Match",
+                        "usr": "s:7TuneURL5MatchC"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvp",
+            "mangledName": "$s7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((TuneURL.Match) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(TuneURL.Match) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Match",
+                            "printedName": "TuneURL.Match",
+                            "usr": "s:7TuneURL5MatchC"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvg",
+                "mangledName": "$s7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((TuneURL.Match) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(TuneURL.Match) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Match",
+                            "printedName": "TuneURL.Match",
+                            "usr": "s:7TuneURL5MatchC"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvs",
+                "mangledName": "$s7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvs",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvM",
+                "mangledName": "$s7TuneURL14StreamDetectorC13matchCallbackyAA5MatchCcSgvM",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "StreamDetector",
+                "printedName": "TuneURL.StreamDetector",
+                "usr": "s:7TuneURL14StreamDetectorC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URL",
+                "printedName": "Foundation.URL",
+                "usr": "s:10Foundation3URLV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:7TuneURL14StreamDetectorCyAC10Foundation0B0Vcfc",
+            "mangledName": "$s7TuneURL14StreamDetectorCyAC10Foundation0B0Vcfc",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "append",
+            "printedName": "append(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AVAudioPCMBuffer",
+                "printedName": "AVFAudio.AVAudioPCMBuffer",
+                "usr": "c:objc(cs)AVAudioPCMBuffer"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL14StreamDetectorC6appendyySo16AVAudioPCMBufferCF",
+            "mangledName": "$s7TuneURL14StreamDetectorC6appendyySo16AVAudioPCMBufferCF",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "reset",
+            "printedName": "reset()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL14StreamDetectorC5resetyyF",
+            "mangledName": "$s7TuneURL14StreamDetectorC5resetyyF",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:7TuneURL14StreamDetectorC",
+        "mangledName": "$s7TuneURL14StreamDetectorC",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Match",
+        "printedName": "Match",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "description",
+            "printedName": "description",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC11descriptionSSvp",
+            "mangledName": "$s7TuneURL5MatchC11descriptionSSvp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC11descriptionSSvg",
+                "mangledName": "$s7TuneURL5MatchC11descriptionSSvg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "id",
+            "printedName": "id",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC2idSivp",
+            "mangledName": "$s7TuneURL5MatchC2idSivp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC2idSivg",
+                "mangledName": "$s7TuneURL5MatchC2idSivg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "info",
+            "printedName": "info",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC4infoSSvp",
+            "mangledName": "$s7TuneURL5MatchC4infoSSvp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC4infoSSvg",
+                "mangledName": "$s7TuneURL5MatchC4infoSSvg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "matchPercentage",
+            "printedName": "matchPercentage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC15matchPercentageSivp",
+            "mangledName": "$s7TuneURL5MatchC15matchPercentageSivp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC15matchPercentageSivg",
+                "mangledName": "$s7TuneURL5MatchC15matchPercentageSivg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "name",
+            "printedName": "name",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC4nameSSvp",
+            "mangledName": "$s7TuneURL5MatchC4nameSSvp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC4nameSSvg",
+                "mangledName": "$s7TuneURL5MatchC4nameSSvg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "time",
+            "printedName": "time",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC4timeSfvp",
+            "mangledName": "$s7TuneURL5MatchC4timeSfvp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Float",
+                    "printedName": "Swift.Float",
+                    "usr": "s:Sf"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC4timeSfvg",
+                "mangledName": "$s7TuneURL5MatchC4timeSfvg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "type",
+            "printedName": "type",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC4typeSSvp",
+            "mangledName": "$s7TuneURL5MatchC4typeSSvp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC4typeSSvg",
+                "mangledName": "$s7TuneURL5MatchC4typeSSvg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "fingerprintVersion",
+            "printedName": "fingerprintVersion",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL5MatchC18fingerprintVersionSSSgvp",
+            "mangledName": "$s7TuneURL5MatchC18fingerprintVersionSSSgvp",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC18fingerprintVersionSSSgvg",
+                "mangledName": "$s7TuneURL5MatchC18fingerprintVersionSSSgvg",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC18fingerprintVersionSSSgvs",
+                "mangledName": "$s7TuneURL5MatchC18fingerprintVersionSSSgvs",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL5MatchC18fingerprintVersionSSSgvM",
+                "mangledName": "$s7TuneURL5MatchC18fingerprintVersionSSSgvM",
+                "moduleName": "TuneURL",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Match",
+                "printedName": "TuneURL.Match",
+                "usr": "s:7TuneURL5MatchC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:7TuneURL5MatchC4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s7TuneURL5MatchC4fromACs7Decoder_p_tKcfc",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "Required",
+              "AccessControl"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "prettyDescription",
+            "printedName": "prettyDescription()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL5MatchC17prettyDescriptionSSyF",
+            "mangledName": "$s7TuneURL5MatchC17prettyDescriptionSSyF",
+            "moduleName": "TuneURL",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7TuneURL5MatchC6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s7TuneURL5MatchC6encode2toys7Encoder_p_tKF",
+            "moduleName": "TuneURL",
+            "implicit": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:7TuneURL5MatchC",
+        "mangledName": "$s7TuneURL5MatchC",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Fingerprint_Private",
+        "printedName": "Fingerprint_Private",
+        "declKind": "Import",
+        "moduleName": "TuneURL",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioBuffer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 436,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioBuffer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 477,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioBuffer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 514,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioBuffer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 599,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioBuffer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 700,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "FloatLiteral",
+      "offset": 736,
+      "length": 3,
+      "value": "4.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "BooleanLiteral",
+      "offset": 775,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioMatcher.swift",
+      "kind": "BooleanLiteral",
+      "offset": 572,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Detector.swift",
+      "kind": "StringLiteral",
+      "offset": 804,
+      "length": 18,
+      "value": "\"TuneURL Detector\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Detector.swift",
+      "kind": "FloatLiteral",
+      "offset": 943,
+      "length": 3,
+      "value": "4.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "StringLiteral",
+      "offset": 389,
+      "length": 49,
+      "value": "\"com.TuneURL.StreamDetector-\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "StringLiteral",
+      "offset": 437,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "FloatLiteral",
+      "offset": 551,
+      "length": 3,
+      "value": "4.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
+      "kind": "StringLiteral",
+      "offset": 1074,
+      "length": 13,
+      "value": "\"description\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
+      "kind": "StringLiteral",
+      "offset": 1106,
+      "length": 4,
+      "value": "\"id\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
+      "kind": "StringLiteral",
+      "offset": 1131,
+      "length": 6,
+      "value": "\"info\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
+      "kind": "StringLiteral",
+      "offset": 1169,
+      "length": 17,
+      "value": "\"matchPercentage\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
+      "kind": "StringLiteral",
+      "offset": 1207,
+      "length": 6,
+      "value": "\"name\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
+      "kind": "StringLiteral",
+      "offset": 1234,
+      "length": 6,
+      "value": "\"time\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
+      "kind": "StringLiteral",
+      "offset": 1261,
+      "length": 6,
+      "value": "\"type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Server.swift",
+      "kind": "StringLiteral",
+      "offset": 418,
+      "length": 48,
+      "value": "\"pnz3vadc52.execute-api.us-east-2.amazonaws.com\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Server.swift",
+      "kind": "StringLiteral",
+      "offset": 501,
+      "length": 25,
+      "value": "\"\/dev\/search-fingerprint\""
+    }
+  ]
+}
