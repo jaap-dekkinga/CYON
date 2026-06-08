@@ -30,7 +30,7 @@ extension UIImageView {
 		}
 
 		// download the image
-		Alamofire.request(url).responseData { (response) in
+        Alamofire.request(url).responseData { (response) in
 			guard let data = response.value else {
 				return
 			}
