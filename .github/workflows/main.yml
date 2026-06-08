@@ -107,17 +107,25 @@ jobs:
             -project "$PROJECT_FILE" \
             -scheme  "$SCHEME"
 
-      - name: Show available simulators
-        run: xcrun simctl list devicetypes | grep iPhone || true
+      - name: Pick simulator destination
+        id: sim
+        run: |
+          # Use the first available iPhone simulator on this runner.
+          DEST=$(xcrun simctl list runtimes | grep iOS | tail -1 | awk '{print $NF}' | sed 's/com.apple.CoreSimulator.SimRuntime.iOS-//' | tr '-' '.')
+          echo "iOS runtime: $DEST"
+          SIM_NAME=$(xcrun simctl list devices available | grep "iPhone" | grep -v unavailable | head -1 | sed 's/.*\(.*\) (.*/\1/' | xargs)
+          echo "Using simulator: $SIM_NAME"
+          echo "name=$SIM_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Build (simulator)
         run: |
           set -o pipefail
+          SIM_NAME="${{ steps.sim.outputs.name }}"
           xcodebuild build \
             -project "$PROJECT_FILE" \
             -scheme  "$SCHEME" \
             -sdk     iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPhone 16,OS=latest" \
+            -destination "platform=iOS Simulator,name=${SIM_NAME}" \
             -configuration Release \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
@@ -132,11 +140,12 @@ jobs:
       - name: Test (simulator)
         run: |
           set -o pipefail
+          SIM_NAME="${{ steps.sim.outputs.name }}"
           xcodebuild test \
             -project "$PROJECT_FILE" \
             -scheme  "$SCHEME" \
             -sdk     iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPhone 16" \
+            -destination "platform=iOS Simulator,name=${SIM_NAME}" \
             -configuration Debug \
             -resultBundlePath TestResults.xcresult \
             CODE_SIGN_IDENTITY="" \
