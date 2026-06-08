@@ -146,7 +146,7 @@ class API {
 	private func searchITunes(searchText: String, completion: @escaping ([Podcast]) -> Void) {
 		let searchURL = "https://itunes.apple.com/search"
 
-		Alamofire.request(searchURL, method: .get, parameters: ["term" : searchText], encoding: URLEncoding.queryString, headers: nil).responseJSON { (response) in
+		AF.request(searchURL, method: .get, parameters: ["term" : searchText], encoding: URLEncoding.queryString).responseJSON { (response) in
 
 			// get the results
 			guard let result = response.value as? [String : Any],
