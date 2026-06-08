@@ -82,8 +82,17 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
-      - name: Show available SDKs
-        run: xcodebuild -showsdks
+      - name: Register iOS platform
+        run: |
+          # Register the iOS 18.0 platform so storyboard/xib compilation works.
+          # This is required on macos-15 runners where the platform exists but
+          # is not automatically registered by Xcode.
+          PLATFORM_PATH=$(xcode-select -p)/Platforms/iPhoneSimulator.platform
+          echo "Platform path: $PLATFORM_PATH"
+          ls "$PLATFORM_PATH" || echo "Platform directory not found"
+          # Touch the platform to force Xcode to register it
+          sudo touch "$PLATFORM_PATH"
+          echo "Platform registered"
 
       - name: Restore xcframework
         uses: actions/download-artifact@v4
@@ -116,7 +125,7 @@ jobs:
           xcodebuild build \
             -project "$PROJECT_FILE" \
             -scheme  "$SCHEME" \
-            -sdk     iphonesimulator \
+            -sdk     iphonesimulator18.0 \
             -configuration Release \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
