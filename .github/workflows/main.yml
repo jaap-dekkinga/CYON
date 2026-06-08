@@ -27,7 +27,7 @@ jobs:
   # ──────────────────────────────────────────────────────────────────────────
   fetch-sdk:
     name: Fetch SDK xcframework
-    runs-on: macos-15
+    runs-on: macos-14
     timeout-minutes: 10
     outputs:
       sdk-sha: ${{ steps.record-sha.outputs.sha }}
@@ -68,7 +68,7 @@ jobs:
   # ──────────────────────────────────────────────────────────────────────────
   build-and-test:
     name: Build + Test (simulator)
-    runs-on: macos-15
+    runs-on: macos-14
     timeout-minutes: 60
     needs: fetch-sdk
 
@@ -77,22 +77,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Select Xcode
-        run: sudo xcode-select --switch /Applications/Xcode_16.app/Contents/Developer
+        run: sudo xcode-select --switch /Applications/Xcode_15.4.app/Contents/Developer
 
       - name: Show Xcode version
         run: xcodebuild -version
-
-      - name: Register iOS platform
-        run: |
-          # Register the iOS 18.0 platform so storyboard/xib compilation works.
-          # This is required on macos-15 runners where the platform exists but
-          # is not automatically registered by Xcode.
-          PLATFORM_PATH=$(xcode-select -p)/Platforms/iPhoneSimulator.platform
-          echo "Platform path: $PLATFORM_PATH"
-          ls "$PLATFORM_PATH" || echo "Platform directory not found"
-          # Touch the platform to force Xcode to register it
-          sudo touch "$PLATFORM_PATH"
-          echo "Platform registered"
 
       - name: Restore xcframework
         uses: actions/download-artifact@v4
@@ -125,8 +113,7 @@ jobs:
           xcodebuild build \
             -project "$PROJECT_FILE" \
             -scheme  "$SCHEME" \
-            -sdk     iphonesimulator18.0 \
-            -destination "generic/platform=iOS Simulator" \
+            -sdk     iphonesimulator \
             -configuration Release \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
