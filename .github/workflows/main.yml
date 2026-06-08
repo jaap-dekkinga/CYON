@@ -82,11 +82,8 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
-      - name: Install iOS simulator runtime
-        run: |
-          # Install the iOS simulator runtime so storyboard compilation works.
-          # This takes ~3 minutes but is required on macos-15 runners.
-          sudo xcodebuild -downloadPlatform iOS
+      - name: Show available SDKs
+        run: xcodebuild -showsdks
 
       - name: Restore xcframework
         uses: actions/download-artifact@v4
