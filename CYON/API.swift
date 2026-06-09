@@ -143,38 +143,30 @@ class API {
 		}
 	}
 
-	private func searchITunes(searchText: String, completion: @escaping ([Podcast]) -> Void) {
-		let searchURL = "https://itunes.apple.com/search"
+private func searchITunes(searchText: String, completion: @escaping ([Podcast]) -> Void) {
+    let searchURL = "https://itunes.apple.com/search"
 
-		AF.request(searchURL, method: .get, parameters: ["term" : searchText], encoding: URLEncoding.queryString).responseJSON { (response) in
+    AF.request(searchURL, method: .get, parameters: ["term": searchText], encoding: URLEncoding.queryString)
+        .responseData { response in
+            var podcasts = [Podcast]()
 
-			// get the results
-			guard let result = response.value as? [String : Any],
-				  let resultCount = result["resultCount"] as? Int else {
-				completion([])
-				return
-			}
+            if let data = response.data,
+               let result = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+               let resultCount = result["resultCount"] as? Int,
+               resultCount > 0,
+               let results = result["results"] as? [[String: Any]] {
+                for item in results {
+                    if let kind = item["kind"] as? String,
+                       kind.lowercased() == "podcast" {
+                        podcasts.append(Podcast(json: item))
+                    }
+                }
+            }
 
-			// parse the podcasts
-			var podcasts = [Podcast]()
-
-			if (resultCount > 0) {
-				if let results = result["results"] as? [[String : Any]] {
-					for item in results {
-						if let kind = item["kind"] as? String {
-							if (kind.lowercased() == "podcast") {
-								podcasts.append(Podcast(json: item))
-							}
-						}
-					}
-				}
-			}
-
-			// call the completion handler
-			DispatchQueue.main.async {
-				completion(podcasts)
-			}
-		}
+            DispatchQueue.main.async {
+                completion(podcasts)
+            }
+        }
 	}
 
 }
