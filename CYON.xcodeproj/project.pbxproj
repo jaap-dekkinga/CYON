@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CEDCD8272FD83B4B009F8545 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCD8262FD83B4B009F8545 /* AlamofireDynamic */; };
-		CEDCD82B2FD83C20009F8545 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCD82A2FD83C20009F8545 /* Alamofire */; };
-		CEDCD82E2FD83C44009F8545 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCD82D2FD83C44009F8545 /* FeedKit */; };
-		CEDCD8302FD83C44009F8545 /* XMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCD82F2FD83C44009F8545 /* XMLKit */; };
+		CE56AAF52FD992540048E0C4 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE56AAF42FD992540048E0C4 /* FeedKit */; };
+		CE56AAF72FD992540048E0C4 /* XMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE56AAF62FD992540048E0C4 /* XMLKit */; };
+		CE56AAFA2FD9926B0048E0C4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE56AAF92FD9926B0048E0C4 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,10 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDCD8302FD83C44009F8545 /* XMLKit in Frameworks */,
-				CEDCD82B2FD83C20009F8545 /* Alamofire in Frameworks */,
-				CEDCD8272FD83B4B009F8545 /* AlamofireDynamic in Frameworks */,
-				CEDCD82E2FD83C44009F8545 /* FeedKit in Frameworks */,
+				CE56AAFA2FD9926B0048E0C4 /* Alamofire in Frameworks */,
+				CE56AAF72FD992540048E0C4 /* XMLKit in Frameworks */,
+				CE56AAF52FD992540048E0C4 /* FeedKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,10 +150,9 @@
 			);
 			name = CYON;
 			packageProductDependencies = (
-				CEDCD8262FD83B4B009F8545 /* AlamofireDynamic */,
-				CEDCD82A2FD83C20009F8545 /* Alamofire */,
-				CEDCD82D2FD83C44009F8545 /* FeedKit */,
-				CEDCD82F2FD83C44009F8545 /* XMLKit */,
+				CE56AAF42FD992540048E0C4 /* FeedKit */,
+				CE56AAF62FD992540048E0C4 /* XMLKit */,
+				CE56AAF92FD9926B0048E0C4 /* Alamofire */,
 			);
 			productName = CYON;
 			productReference = CE7FFD752FD5C1D0002322FF /* CYON.app */;
@@ -240,8 +237,8 @@
 			mainGroup = CE7FFD6C2FD5C1CF002322FF;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				CEC0E49B2FD6EE0000A841AE /* XCRemoteSwiftPackageReference "Alamofire" */,
-				CEDCD82C2FD83C44009F8545 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				CE56AAF32FD992540048E0C4 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				CE56AAF82FD9926B0048E0C4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CE7FFD762FD5C1D0002322FF /* Products */;
@@ -634,15 +631,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CEC0E49B2FD6EE0000A841AE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.12.0;
-			};
-		};
-		CEDCD82C2FD83C44009F8545 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+		CE56AAF32FD992540048E0C4 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nmdias/FeedKit";
 			requirement = {
@@ -650,28 +639,31 @@
 				minimumVersion = 10.4.0;
 			};
 		};
+		CE56AAF82FD9926B0048E0C4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CEDCD8262FD83B4B009F8545 /* AlamofireDynamic */ = {
+		CE56AAF42FD992540048E0C4 /* FeedKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC0E49B2FD6EE0000A841AE /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
-		};
-		CEDCD82A2FD83C20009F8545 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEC0E49B2FD6EE0000A841AE /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		CEDCD82D2FD83C44009F8545 /* FeedKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEDCD82C2FD83C44009F8545 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			package = CE56AAF32FD992540048E0C4 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
 		};
-		CEDCD82F2FD83C44009F8545 /* XMLKit */ = {
+		CE56AAF62FD992540048E0C4 /* XMLKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEDCD82C2FD83C44009F8545 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			package = CE56AAF32FD992540048E0C4 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = XMLKit;
+		};
+		CE56AAF92FD9926B0048E0C4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE56AAF82FD9926B0048E0C4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
