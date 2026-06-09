@@ -104,16 +104,15 @@ class Reporting {
 		}
 
 		// perform the request
-		Alamofire.request(serverURL, method: .post, parameters: reportData).response {
-			(response) in
-#if DEBUG
-			if let responseData = response.data,
-			   let responseString = String(data: responseData, encoding: .utf8) {
-				print("report response: \(responseString)")
-			} else {
-				print("report response: [error]")
-			}
-#endif // DEBUG
+		AF.request(serverURL, method: .post, parameters: reportData, encoding: URLEncoding.default).response { response in
+		#if DEBUG
+		    if let responseData = response.data,
+		       let responseString = String(data: responseData, encoding: .utf8) {
+		        print("report response: \(responseString)")
+		    } else {
+		        print("report response: [error]")
+		    }
+		#endif // DEBUG
 		}
 	}
 
