@@ -16,7 +16,7 @@ class API {
 
 	// Digital Podcast directory
 	static let digitalPodcastAppID = "42753bb3eb6a7fcd4cb622f484acc0da"
-    static let digitalPodcastBaseURL = "http://api.digitalpodcast.com/v2r"
+	static let digitalPodcastBaseURL = "http://api.digitalpodcast.com/v2r"
 
 	// private
 	private let dataCache = NSCache<AnyObject, AnyObject>()
@@ -30,7 +30,7 @@ class API {
 
 	func getEpisodes(podcast: Podcast, completion: @escaping ([Episode]) -> Void) {
 		// safety check
-		guard (podcast.feedURL.isEmpty == false),
+		guard podcast.feedURL.isEmpty == false,
 			  let feedURL = URL(string: podcast.feedURL) else {
 			DispatchQueue.main.async {
 				completion([])
@@ -48,29 +48,19 @@ class API {
 		}
 
 		// parse the feed
-		let parser = FeedParser(URL: feedURL)
-		parser.parseAsync { [weak self] (result) in
-			// safety check
-			guard let self = self else {
-				return
-			}
-
-			var episodes = [Episode]()
-
-			switch result {
-				case .success(let feed):
-					if let rssFeed = feed.rssFeed {
-						// save the feed in the cache
-						self.dataCache.setObject(rssFeed as AnyObject, forKey: feedURL as AnyObject)
-						// parse the episodes
-						episodes = self.parseEpisodes(feed: rssFeed, podcast: podcast)
-					}
-				case .failure(let error):
-					NSLog("Error parsing rss feed. (\(error.localizedDescription))")
-			}
-
-			DispatchQueue.main.async {
-				completion(episodes)
+		Task {
+			do {
+				let feed = try await RSSFeed(url: feedURL)
+				self.dataCache.setObject(feed as AnyObject, forKey: feedURL as AnyObject)
+				let episodes = self.parseEpisodes(feed: feed, podcast: podcast)
+				DispatchQueue.main.async {
+					completion(episodes)
+				}
+			} catch {
+				NSLog("Error parsing rss feed. (\(error.localizedDescription))")
+				DispatchQueue.main.async {
+					completion([])
+				}
 			}
 		}
 	}
@@ -95,7 +85,7 @@ class API {
 
 		for item in items {
 			var episode = Episode(feed: item)
-			if (episode.artwork == nil) {
+			if episode.artwork == nil {
 				episode.artwork = podcast.artwork
 			}
 			episodes.append(episode)
@@ -113,60 +103,53 @@ class API {
 		}
 
 		// parse the rss feed
-		let parser = FeedParser(URL: searchURL)
-		parser.parseAsync { [weak self] (result) in
-			// safety check
-			guard (self != nil) else {
-				return
-			}
-
-			var podcasts = [Podcast]()
-
-			// get the results
-			switch result {
-				case .success(let feed):
-					if let items = feed.rssFeed?.items {
-						for item in items {
-							if let podcast = Podcast(item: item) {
-								podcasts.append(podcast)
-							}
+		Task {
+			do {
+				let feed = try await RSSFeed(url: searchURL)
+				var podcasts = [Podcast]()
+				if let items = feed.items {
+					for item in items {
+						if let podcast = Podcast(item: item) {
+							podcasts.append(podcast)
 						}
 					}
-				case .failure(let error):
-					NSLog("Error parsing rss feed. (\(error.localizedDescription))")
-			}
-
-			// call the completion handler
-			DispatchQueue.main.async {
-				completion(podcasts)
+				}
+				DispatchQueue.main.async {
+					completion(podcasts)
+				}
+			} catch {
+				NSLog("Error parsing rss feed. (\(error.localizedDescription))")
+				DispatchQueue.main.async {
+					completion([])
+				}
 			}
 		}
 	}
 
-private func searchITunes(searchText: String, completion: @escaping ([Podcast]) -> Void) {
-    let searchURL = "https://itunes.apple.com/search"
+	private func searchITunes(searchText: String, completion: @escaping ([Podcast]) -> Void) {
+		let searchURL = "https://itunes.apple.com/search"
 
-    AF.request(searchURL, method: .get, parameters: ["term": searchText], encoding: URLEncoding.queryString)
-        .responseData { response in
-            var podcasts = [Podcast]()
+		AF.request(searchURL, method: .get, parameters: ["term": searchText], encoding: URLEncoding.queryString)
+			.responseData { response in
+				var podcasts = [Podcast]()
 
-            if let data = response.data,
-               let result = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-               let resultCount = result["resultCount"] as? Int,
-               resultCount > 0,
-               let results = result["results"] as? [[String: Any]] {
-                for item in results {
-                    if let kind = item["kind"] as? String,
-                       kind.lowercased() == "podcast" {
-                        podcasts.append(Podcast(json: item))
-                    }
-                }
-            }
+				if let data = response.data,
+				   let result = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+				   let resultCount = result["resultCount"] as? Int,
+				   resultCount > 0,
+				   let results = result["results"] as? [[String: Any]] {
+					for item in results {
+						if let kind = item["kind"] as? String,
+						   kind.lowercased() == "podcast" {
+							podcasts.append(Podcast(json: item))
+						}
+					}
+				}
 
-            DispatchQueue.main.async {
-                completion(podcasts)
-            }
-        }
+				DispatchQueue.main.async {
+					completion(podcasts)
+				}
+			}
 	}
 
 }
