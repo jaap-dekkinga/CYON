@@ -24,9 +24,9 @@ struct Episode: Codable, Equatable {
         self.title = feed.title ?? ""
         self.description = feed.description ?? ""
         self.date = feed.pubDate?.formatDate() ?? ""
-        self.url = feed.enclosure?.url         // was: feed.enclosure?.attributes?.url
-        self.author = feed.iTunes?.author      // was: feed.iTunes?.iTunesAuthor
-        self.artwork = feed.iTunes?.image?.href ?? ""  // was: feed.iTunes?.iTunesImage?.attributes?.href
+        self.url = feed.enclosure?.attributes?.url         
+        self.author = feed.iTunes?.author     
+        self.artwork = feed.iTunes?.image?..attributes?.href ?? "" 
     }
 
     init(data: [String : Any]) {
