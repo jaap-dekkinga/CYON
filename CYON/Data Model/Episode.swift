@@ -11,45 +11,42 @@ import UIKit
 
 struct Episode: Codable, Equatable {
 
-	var date: String
-	var description: String
-	var artwork: String?
-	var author: String?
-	var title: String
-	var url: String?
+    var date: String
+    var description: String
+    var artwork: String?
+    var author: String?
+    var title: String
+    var url: String?
 
-	// MARK: -
+    // MARK: -
 
-	init(feed: RSSFeedItem) {
-		self.title = feed.title ?? ""
-		self.description = feed.description ?? ""
-		self.date = feed.pubDate?.formatDate() ?? ""
-		self.url = feed.enclosure?.attributes?.url
-		self.author = feed.iTunes?.author
-		self.artwork = feed.iTunes?.image?.href ?? ""
-	}
+    init(feed: RSSFeedItem) {
+        self.title = feed.title ?? ""
+        self.description = feed.description ?? ""
+        self.date = feed.pubDate?.formatDate() ?? ""
+        self.url = feed.enclosure?.url         // was: feed.enclosure?.attributes?.url
+        self.author = feed.iTunes?.author      // was: feed.iTunes?.iTunesAuthor
+        self.artwork = feed.iTunes?.image?.href ?? ""  // was: feed.iTunes?.iTunesImage?.attributes?.href
+    }
 
-	init(data: [String : Any]) {
-		self.title = data["title"] as? String ?? "No Title"
-		self.description = data["description"] as? String ?? ""
+    init(data: [String : Any]) {
+        self.title = data["title"] as? String ?? "No Title"
+        self.description = data["description"] as? String ?? ""
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS-HH:mm"
+        self.date = dateFormat.date(from: data["published_at"] as! String)?.formatDate() ?? ""
+        self.author = data["artist"] as? String ?? "Unknown"
+        self.url = data["audio_url"] as? String ?? ""
+        self.artwork = data["artwork_url"] as? String ?? ""
+    }
 
-		let dateFormat = DateFormatter()
-		dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS-HH:mm"
-		self.date = dateFormat.date(from: data["published_at"] as! String)?.formatDate() ?? ""
-		//self.date = data["published_at"] as? String ?? ""
-		self.author = data["artist"] as? String ?? "Unknown"
-		self.url = data["audio_url"] as? String ?? ""
-		self.artwork = data["artwork_url"] as? String ?? ""
-	}
+    var isValid: Bool {
+        return ((url != nil) && (url?.isEmpty == false))
+    }
 
-	var isValid: Bool {
-		return ((url != nil) && (url?.isEmpty == false))
-	}
+    // MARK: - Equatable
 
-	// MARK: - Equatable
-
-	static func == (lhs: Self, rhs: Self) -> Bool {
-		return (lhs.url == rhs.url)
-	}
-
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return (lhs.url == rhs.url)
+    }
 }
