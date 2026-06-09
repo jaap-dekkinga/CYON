@@ -8,6 +8,7 @@
 
 import FeedKit
 import UIKit
+internal import XMLKit
 
 struct Episode: Codable, Equatable {
 
