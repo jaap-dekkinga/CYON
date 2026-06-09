@@ -36,7 +36,7 @@ struct Podcast: Codable, Equatable {
 	init?(item: RSSFeedItem) {
 		// safety check the item properties
 		guard let title = item.title,
-			  let sourceURL = item.source?.value else {
+			  let sourceURL = item.source?.url else {
 			return nil
 		}
 
