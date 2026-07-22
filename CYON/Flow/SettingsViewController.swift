@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TuneURL
 
 class SettingsViewController: UIViewController {
 
