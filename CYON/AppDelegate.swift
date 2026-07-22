@@ -69,11 +69,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	private func setupTuneURLTrigger() {
-		guard let url = Bundle.main.url(forResource: "Trigger-Sound", withExtension: "wav") else {
-			return
-		}
-
-		Detector.setTrigger(url)
+	    guard let url = Bundle.main.url(forResource: "Trigger-Sound", withExtension: "wav") else {
+	        NSLog("[CYON-TURL] setTrigger FAILED — Trigger-Sound.wav not in bundle")
+	        return
+	    }
+	    NSLog("[CYON-TURL] setTrigger loading from \(url.lastPathComponent) at \(url.path)")
+	    Detector.setTrigger(url)
+	    NSLog("[CYON-TURL] setTrigger returned")
 	}
 
 }
