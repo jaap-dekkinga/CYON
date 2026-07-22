@@ -255,17 +255,32 @@ class Player: UIViewController {
 		updateNowPlayingInfo()
 
 		// process the podcast for tuneurls
+		let scanStart = CFAbsoluteTimeGetCurrent()
+		NSLog("[CYON-TURL] processAudio START file=\(fileURL.lastPathComponent)")
+		
 		Detector.processAudio(for: fileURL) { [weak self] matches in
-			if let self = self, (matches.count > 0),
-			   (self.currentFileURL == fileURL) {
-				DispatchQueue.main.async {
-					// save the discovered tuneurls
-					self.tuneURLs = matches
-#if DEBUG
-					print("Found \(matches.count) tuneurls in the podcast.")
-#endif // DEBUG
-				}
-			}
+		    let elapsed = CFAbsoluteTimeGetCurrent() - scanStart
+		    guard let self = self else {
+		        NSLog("[CYON-TURL] processAudio DONE self deallocated elapsed=\(String(format: "%.2fs", elapsed))")
+		        return
+		    }
+		
+		    let urlChanged = (self.currentFileURL != fileURL)
+		    NSLog("[CYON-TURL] processAudio DONE matches=\(matches.count) elapsed=\(String(format: "%.2fs", elapsed)) urlChanged=\(urlChanged)")
+		
+		    // log each match up front, before the URL-change guard drops them
+		    for (i, m) in matches.enumerated() {
+		        NSLog("[CYON-TURL]   match[\(i)] id=\(m.id) time=\(m.time)s matchPct=\(m.matchPercentage) name=\"\(m.name)\" type=\"\(m.type)\"")
+		    }
+		
+		    if (matches.count > 0), !urlChanged {
+		        DispatchQueue.main.async {
+		            self.tuneURLs = matches
+		            NSLog("[CYON-TURL] tuneURLs saved count=\(matches.count)")
+		        }
+		    } else if urlChanged {
+		        NSLog("[CYON-TURL] DISCARDED — episode changed during scan")
+		    }
 		}
 	}
 
@@ -781,41 +796,28 @@ class Player: UIViewController {
 	// MARK: - TuneURL support
 
 	private func beginTuneURL() {
-		// safety check
-		guard let tuneURL = activeTuneURL,
-			  (interestViewController == nil) else {
-				  return
-			  }
-
-#if DEBUG
-		print("TuneURL active:")
-		print("\tname: \(activeTuneURL?.name ?? "")")
-		print("\tdescription: \(activeTuneURL?.description ?? "")")
-		print("\tid: \(activeTuneURL?.id ?? -1)")
-		print("\tinfo: \(activeTuneURL?.info ?? "")")
-		print("\tmatchPercentage: \(activeTuneURL?.matchPercentage ?? -1)")
-		print("\ttime: \(activeTuneURL?.time ?? -1)")
-		print("\ttype: \(activeTuneURL?.type ?? "")")
-#endif // DEBUG
-
-		// open the interest view controller
-		let viewController = InterestViewController.create(with: tuneURL, wasUserInitiated: false)
-		AppDelegate.shared.window?.rootViewController?.present(viewController, animated: true)
-		interestViewController = viewController
+	    guard let tuneURL = activeTuneURL, interestViewController == nil else {
+	        return
+	    }
+	
+	    NSLog("[CYON-TURL] WINDOW OPEN id=\(tuneURL.id) time=\(tuneURL.time)s matchPct=\(tuneURL.matchPercentage) name=\"\(tuneURL.name)\" type=\"\(tuneURL.type)\"")
+	
+	    let viewController = InterestViewController.create(with: tuneURL, wasUserInitiated: false)
+	    AppDelegate.shared.window?.rootViewController?.present(viewController, animated: true)
+	    interestViewController = viewController
 	}
-
+	
 	private func endTuneURL() {
-		// safety check
-		guard let viewController = interestViewController else {
-			return
-		}
-
-		// check if the user has interacted with the interest card
-		if (viewController.userInteracted == false) {
-			// close the tune url view
-			interestViewController?.dismiss(animated: true, completion: nil)
-			interestViewController = nil
-		}
+	    guard let viewController = interestViewController else {
+	        return
+	    }
+	
+	    NSLog("[CYON-TURL] WINDOW CLOSE userInteracted=\(viewController.userInteracted)")
+	
+	    if viewController.userInteracted == false {
+	        interestViewController?.dismiss(animated: true, completion: nil)
+	        interestViewController = nil
+	    }
 	}
 
 }
