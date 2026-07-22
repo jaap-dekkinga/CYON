@@ -1,6 +1,6 @@
 //
 //  API.swift
-//  Podcast
+//  CYON
 //
 //  Created on 10/14/21.
 //  Copyright © 2021-2022 TuneURL Inc. All rights reserved.
@@ -10,125 +10,135 @@ import Alamofire
 import FeedKit
 import Foundation
 
-class API {
+/// Podcast metadata and episode feed access.
+///
+/// Public surface:
+/// - `searchPodcasts(searchText:completion:)` — iTunes Search API
+/// - `getEpisodes(podcast:completion:)` — RSS feed → `[Episode]` (cached per feed URL)
+/// - `clearCache()` — drop the feed cache (call on memory warnings)
+///
+/// Both fetch methods deliver `completion` on the main queue and return an empty
+/// array on any failure (network, parse, missing data). Callers never need to
+/// handle errors — they get "no results" instead.
+final class API {
 
-    static let shared = API()
+	// MARK: - Singleton
 
-    // Digital Podcast directory
-    static let digitalPodcastAppID = "42753bb3eb6a7fcd4cb622f484acc0da"
-    static let digitalPodcastBaseURL = "http://api.digitalpodcast.com/v2r"
+	static let shared = API()
+	private init() {}
 
-    // private
-    private let dataCache = NSCache<AnyObject, AnyObject>()
-    private var useITunesDirectory = true
+	// MARK: - Cache
 
-    // MARK: - Public
+	func clearCache() {
+		channelCache.removeAllObjects()
+	}
 
-    func clearCache() {
-        dataCache.removeAllObjects()
-    }
+	private let channelCache = NSCache<NSString, ChannelBox>()
 
-    func getEpisodes(podcast: Podcast, completion: @escaping ([Episode]) -> Void) {
-        guard podcast.feedURL.isEmpty == false,
-              let feedURL = URL(string: podcast.feedURL) else {
-            DispatchQueue.main.async { completion([]) }
-            return
-        }
+	// MARK: - Search
 
-        // get the episodes from the cache
-        if let cached = dataCache.object(forKey: podcast.feedURL as AnyObject) as? RSSFeedChannel {
-            let episodes = parseEpisodes(channel: cached, podcast: podcast)
-            DispatchQueue.main.async { completion(episodes) }
-            return
-        }
+	/// Search Apple's podcast directory.
+	///
+	/// - Note: `media=podcast` is required. Without it iTunes defaults to
+	///   `media=all` and returns music / movies / apps, none of which have
+	///   `kind == "podcast"` — the filter below would then reject everything.
+	func searchPodcasts(searchText: String, completion: @escaping ([Podcast]) -> Void) {
+		let parameters: [String: String] = [
+			"term": searchText,
+			"media": "podcast",
+		]
 
-        Task {
-            do {
-                let feed = try await RSSFeed(url: feedURL)
-                guard let channel = feed.channel else {
-                    DispatchQueue.main.async { completion([]) }
-                    return
-                }
-                self.dataCache.setObject(channel as AnyObject, forKey: podcast.feedURL as AnyObject)
-                let episodes = self.parseEpisodes(channel: channel, podcast: podcast)
-                DispatchQueue.main.async { completion(episodes) }
-            } catch {
-                NSLog("Error parsing rss feed. (\(error.localizedDescription))")
-                DispatchQueue.main.async { completion([]) }
-            }
-        }
-    }
+		AF.request(
+			Endpoints.iTunesSearch,
+			method: .get,
+			parameters: parameters,
+			encoding: URLEncoding.queryString
+		)
+		.responseData { response in
+			let podcasts = Self.parseSearchResponse(response.data)
+			DispatchQueue.main.async { completion(podcasts) }
+		}
+	}
 
-    func searchPodcasts(searchText: String, completion: @escaping ([Podcast]) -> Void) {
-        if useITunesDirectory {
-            return searchITunes(searchText: searchText, completion: completion)
-        } else {
-            return searchDigitalPodcast(searchText: searchText, completion: completion)
-        }
-    }
+	// MARK: - Episodes
 
-    // MARK: - Private
+	func getEpisodes(podcast: Podcast, completion: @escaping ([Episode]) -> Void) {
+		guard let feedURL = URL(string: podcast.feedURL), podcast.feedURL.isEmpty == false else {
+			deliverOnMain([Episode](), to: completion)
+			return
+		}
 
-    private func parseEpisodes(channel: RSSFeedChannel, podcast: Podcast) -> [Episode] {
-        guard let items = channel.items else {
-            return []
-        }
-        var episodes = [Episode]()
-        for item in items {
-            var episode = Episode(feed: item)
-            if episode.artwork == nil {
-                episode.artwork = podcast.artwork
-            }
-            episodes.append(episode)
-        }
-        return episodes
-    }
+		if let cached = channelCache.object(forKey: podcast.feedURL as NSString) {
+			let episodes = parseEpisodes(channel: cached.channel, podcast: podcast)
+			deliverOnMain(episodes, to: completion)
+			return
+		}
 
-    private func searchDigitalPodcast(searchText: String, completion: @escaping ([Podcast]) -> Void) {
-        guard let searchString = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let searchURL = URL(string: "\(API.digitalPodcastBaseURL)/search/?appid=\(API.digitalPodcastAppID)&format=rss&result=50&keywords=\(searchString)") else {
-            NSLog("Error creating podcast search url.")
-            return
-        }
+		Task {
+			let episodes = await fetchAndCacheEpisodes(feedURL: feedURL, podcast: podcast)
+			deliverOnMain(episodes, to: completion)
+		}
+	}
 
-        Task {
-            do {
-                let feed = try await RSSFeed(url: searchURL)
-                var podcasts = [Podcast]()
-                if let items = feed.channel?.items {
-                    for item in items {
-                        if let podcast = Podcast(item: item) {
-                            podcasts.append(podcast)
-                        }
-                    }
-                }
-                DispatchQueue.main.async { completion(podcasts) }
-            } catch {
-                NSLog("Error parsing rss feed. (\(error.localizedDescription))")
-                DispatchQueue.main.async { completion([]) }
-            }
-        }
-    }
+	private func fetchAndCacheEpisodes(feedURL: URL, podcast: Podcast) async -> [Episode] {
+		do {
+			let feed = try await RSSFeed(url: feedURL)
+			guard let channel = feed.channel else { return [] }
+			channelCache.setObject(ChannelBox(channel), forKey: podcast.feedURL as NSString)
+			return parseEpisodes(channel: channel, podcast: podcast)
+		} catch {
+			NSLog("API: RSS feed parse failed for \(podcast.feedURL) — \(error.localizedDescription)")
+			return []
+		}
+	}
 
-    private func searchITunes(searchText: String, completion: @escaping ([Podcast]) -> Void) {
-        let searchURL = "https://itunes.apple.com/search"
+	// MARK: - Parsing
 
-        AF.request(searchURL, method: .get, parameters: ["term": searchText], encoding: URLEncoding.queryString)
-            .responseData { response in
-                var podcasts = [Podcast]()
-                if let data = response.data,
-                   let result = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                   let resultCount = result["resultCount"] as? Int,
-                   resultCount > 0,
-                   let results = result["results"] as? [[String: Any]] {
-                    for item in results {
-                        if let kind = item["kind"] as? String,
-                           kind.lowercased() == "podcast" {
-                            podcasts.append(Podcast(json: item))
-                        }
-                    }
-                }
-                DispatchQueue.main.async { completion(podcasts) }
-            }
-    }
+	private static func parseSearchResponse(_ data: Data?) -> [Podcast] {
+		guard let data,
+			  let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+			  let results = root["results"] as? [[String: Any]]
+		else {
+			return []
+		}
+
+		return results.compactMap { item -> Podcast? in
+			guard let kind = item["kind"] as? String,
+				  kind.lowercased() == "podcast"
+			else {
+				return nil
+			}
+			return Podcast(json: item)
+		}
+	}
+
+	private func parseEpisodes(channel: RSSFeedChannel, podcast: Podcast) -> [Episode] {
+		guard let items = channel.items else { return [] }
+		return items.map { item in
+			var episode = Episode(feed: item)
+			if episode.artwork == nil {
+				episode.artwork = podcast.artwork
+			}
+			return episode
+		}
+	}
+
+	// MARK: - Threading
+
+	private func deliverOnMain<T>(_ value: T, to completion: @escaping (T) -> Void) {
+		DispatchQueue.main.async { completion(value) }
+	}
+
+	// MARK: - Constants
+
+	private enum Endpoints {
+		static let iTunesSearch = "https://itunes.apple.com/search"
+	}
+
+	/// `NSCache` requires class keys/values. Wrap the FeedKit struct so it can
+	/// live in the cache without bridging through `AnyObject`.
+	private final class ChannelBox {
+		let channel: RSSFeedChannel
+		init(_ channel: RSSFeedChannel) { self.channel = channel }
+	}
 }
