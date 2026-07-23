@@ -73,9 +73,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	        NSLog("[CYON-TURL] setTrigger FAILED — Trigger-Sound.wav not in bundle")
 	        return
 	    }
-	    NSLog("[CYON-TURL] setTrigger loading from \(url.lastPathComponent) at \(url.path)")
+	    NSLog("[CYON-TURL] setTrigger loading from \(url.lastPathComponent)")
 	    Detector.setTrigger(url)
 	    NSLog("[CYON-TURL] setTrigger returned")
+	
+	    // SELF-TEST: scan the trigger sound file itself.
+	    let start = CFAbsoluteTimeGetCurrent()
+	    NSLog("[CYON-TURL] SELF-TEST START scanning \(url.lastPathComponent)")
+	    Detector.processAudio(for: url) { matches in
+	        let elapsed = CFAbsoluteTimeGetCurrent() - start
+	        NSLog("[CYON-TURL] SELF-TEST DONE matches=\(matches.count) elapsed=\(String(format: "%.2fs", elapsed))")
+	        for (i, m) in matches.enumerated() {
+	            NSLog("[CYON-TURL]   SELF-TEST match[\(i)] time=\(m.time)s matchPct=\(m.matchPercentage)")
+	        }
+	    }
 	}
-
 }
