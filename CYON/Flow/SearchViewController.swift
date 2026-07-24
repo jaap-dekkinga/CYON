@@ -28,10 +28,13 @@ class SearchViewController: BaseTableViewController {
 	private var podcasts = [Podcast]()
 
 	lazy var searchController: UISearchController = {
-		let search = UISearchController(searchResultsController: nil)
-		search.searchBar.delegate = self
-		search.hidesBottomBarWhenPushed = true
-		return search
+	    let search = UISearchController(searchResultsController: nil)
+	    search.searchBar.delegate = self
+	    search.hidesBottomBarWhenPushed = true
+	    search.searchBar.autocorrectionType = .no
+	    search.searchBar.autocapitalizationType = .none
+	    search.searchBar.spellCheckingType = .no
+	    return search
 	}()
 
 	// MARK: - UIViewController
@@ -81,7 +84,7 @@ extension SearchViewController: UISearchBarDelegate {
 
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		// --- Debug shortcut: type "repo" to play a bundled test file ---
-		if let text = searchBar.text, text.lowercased() == "repo" {
+		if let text = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(), text == "repo" {
 			guard let url = Bundle.main.url(forResource: Self.debugTestFile, withExtension: "wav") else {
 				NSLog("[CYON-TURL] debug file '\(Self.debugTestFile).wav' not in bundle — check target membership")
 				searchController.dismiss(animated: true, completion: nil)
