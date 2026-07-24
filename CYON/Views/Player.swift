@@ -820,4 +820,25 @@ class Player: UIViewController {
 	    }
 	}
 
+	// Testing purpose
+	/// Debug helper: play a local file directly (no download, no PlayerItem).
+	/// Skips DownloadCache since the file is already on disk.
+	public static func debugPlayFile(_ fileURL: URL, title: String = "Debug") {
+	    NSLog("[CYON-TURL] debugPlayFile \(fileURL.lastPathComponent)")
+	    Player.shared.debugPlayLocal(fileURL: fileURL)
+	    Player.shared.maximizePlayer()
+	}
+	
+	/// Instance-side worker for debugPlayFile — needs to be here to reach `startPlaying`.
+	private func debugPlayLocal(fileURL: URL) {
+	    // Update the visible player labels a bit so the user knows what's on
+	    self.titleLabel?.text = fileURL.deletingPathExtension().lastPathComponent
+	    self.miniTitleLabel?.text = fileURL.deletingPathExtension().lastPathComponent
+	    self.authorLabel?.text = "Debug"
+	    self.miniAuthorLabel?.text = "Debug"
+	
+	    // Reuse the private startPlaying — same file path AVPlayer + Detector.processAudio run.
+	    self.currentStartTime = 0.0
+	    self.startPlaying(fileURL)
+	}
 }
