@@ -1540,14 +1540,14 @@
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Detector.swift",
       "kind": "StringLiteral",
-      "offset": 804,
+      "offset": 783,
       "length": 18,
       "value": "\"TuneURL Detector\""
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Detector.swift",
       "kind": "FloatLiteral",
-      "offset": 943,
+      "offset": 922,
       "length": 3,
       "value": "4.0"
     },
