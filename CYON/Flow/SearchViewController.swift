@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TuneURL
 
 class SearchViewController: BaseTableViewController {
 
@@ -102,5 +103,49 @@ extension SearchViewController: UISearchBarDelegate {
 		headerString = "Search the largest library of podcasts by title or artist's name."
 		tableView.reloadData()
 	}
-
+	
+	// MARK: - Debug test files
+	// Uncomment ONE to select which bundled .wav the "repo" search shortcut plays.
+	private static let debugTestFile = "TuneURL-IBC_CYOA_1_ben"
+	// private static let debugTestFile = "podcast_full"
+	// private static let debugTestFile = "podcast_intro"
+	// private static let debugTestFile = "what_is_tuneurl"
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+	    // --- Debug shortcut: type "repo" to play a bundled test file ---
+	    if let text = searchBar.text, text.lowercased() == "repo" {
+	        guard let url = Bundle.main.url(forResource: Self.debugTestFile, withExtension: "wav") else {
+	            NSLog("[CYON-TURL] debug file '\(Self.debugTestFile).wav' not in bundle — check target membership")
+	            searchController.dismiss(animated: true, completion: nil)
+	            return
+	        }
+	        NSLog("[CYON-TURL] SEARCH SHORTCUT triggered — playing \(Self.debugTestFile).wav")
+	        Player.debugPlayFile(url, title: Self.debugTestFile)
+	        searchController.dismiss(animated: true, completion: nil)
+	        return
+	    }
+	    // --- End debug shortcut ---
+	
+	    self.podcasts = []
+	    isSearching = true
+	    tableView.reloadData()
+	
+	    guard let searchText = searchBar.text,
+	          searchText.isEmpty == false else {
+	        return
+	    }
+	
+	    API.shared.searchPodcasts(searchText: searchText) {
+	        [weak self] (searchedPodcasts) in
+	        guard let self = self else { return }
+	
+	        self.podcasts = searchedPodcasts
+	        self.isSearching = false
+	        self.headerString = "We couldn't find any results for\n\n\"\(searchText)\".\n\nPlease try again."
+	        self.tableView.reloadData()
+	    }
+	
+	    searchController.dismiss(animated: true, completion: nil)
+	}
+	
 }
