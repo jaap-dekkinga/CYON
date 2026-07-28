@@ -2,8 +2,8 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/runner/Library/Developer/Xcode/DerivedData/TuneURL-gnsyeyfszhbbdbhfagkberlyubyb/Build/Intermediates.noindex/ArchiveIntermediates/TuneURL (SDK)/InstallationBuildProductsLocation/Library/Frameworks/TuneURL.framework/TuneURL'
 relocations:
-  - { offset: 0x57B45, size: 0x8, addend: 0x0, symName: _TuneURLVersionString, symObjAddr: 0x0, symBinAddr: 0x1A850, symSize: 0x0 }
-  - { offset: 0x57B7A, size: 0x8, addend: 0x0, symName: _TuneURLVersionNumber, symObjAddr: 0x28, symBinAddr: 0x1A878, symSize: 0x0 }
+  - { offset: 0x57B45, size: 0x8, addend: 0x0, symName: _TuneURLVersionString, symObjAddr: 0x0, symBinAddr: 0x1A860, symSize: 0x0 }
+  - { offset: 0x57B7A, size: 0x8, addend: 0x0, symName: _TuneURLVersionNumber, symObjAddr: 0x28, symBinAddr: 0x1A888, symSize: 0x0 }
   - { offset: 0x57D37, size: 0x8, addend: 0x0, symName: '_$s7TuneURL11AudioBufferCMa', symObjAddr: 0x32C, symBinAddr: 0x432C, symSize: 0x20 }
   - { offset: 0x57D82, size: 0x8, addend: 0x0, symName: ___swift_memcpy16_8, symObjAddr: 0xC30, symBinAddr: 0x4C30, symSize: 0xC }
   - { offset: 0x57D96, size: 0x8, addend: 0x0, symName: ___swift_noop_void_return, symObjAddr: 0xC3C, symBinAddr: 0x4C3C, symSize: 0x4 }
