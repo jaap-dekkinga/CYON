@@ -2,8 +2,8 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/runner/Library/Developer/Xcode/DerivedData/TuneURL-gnsyeyfszhbbdbhfagkberlyubyb/Build/Intermediates.noindex/ArchiveIntermediates/TuneURL (SDK)/InstallationBuildProductsLocation/Library/Frameworks/TuneURL.framework/TuneURL'
 relocations:
-  - { offset: 0x57B45, size: 0x8, addend: 0x0, symName: _TuneURLVersionString, symObjAddr: 0x0, symBinAddr: 0x1EA20, symSize: 0x0 }
-  - { offset: 0x57B7A, size: 0x8, addend: 0x0, symName: _TuneURLVersionNumber, symObjAddr: 0x28, symBinAddr: 0x1EA48, symSize: 0x0 }
+  - { offset: 0x57B45, size: 0x8, addend: 0x0, symName: _TuneURLVersionString, symObjAddr: 0x0, symBinAddr: 0x1EDB0, symSize: 0x0 }
+  - { offset: 0x57B7A, size: 0x8, addend: 0x0, symName: _TuneURLVersionNumber, symObjAddr: 0x28, symBinAddr: 0x1EDD8, symSize: 0x0 }
   - { offset: 0x57D37, size: 0x8, addend: 0x0, symName: '_$s7TuneURL11AudioBufferCMa', symObjAddr: 0x32C, symBinAddr: 0x832C, symSize: 0x20 }
   - { offset: 0x57D82, size: 0x8, addend: 0x0, symName: ___swift_memcpy16_8, symObjAddr: 0xC30, symBinAddr: 0x8C30, symSize: 0xC }
   - { offset: 0x57D96, size: 0x8, addend: 0x0, symName: ___swift_noop_void_return, symObjAddr: 0xC3C, symBinAddr: 0x8C3C, symSize: 0x4 }
@@ -69,7 +69,7 @@ relocations:
   - { offset: 0x5A257, size: 0x8, addend: 0x0, symName: '_$s7TuneURL12AudioCaptureCACycfcTo', symObjAddr: 0x1340, symBinAddr: 0xA388, symSize: 0x2C }
   - { offset: 0x5A2DE, size: 0x8, addend: 0x0, symName: '_$s7TuneURL12AudioCaptureC11audioBuffer10sampleRate8delegateAcA0cF0C_SdAA0cD8Delegate_pSgtcfcTf4gnnn_n', symObjAddr: 0x16C4, symBinAddr: 0xA64C, symSize: 0x1F0 }
   - { offset: 0x5A4A5, size: 0x8, addend: 0x0, symName: '_$sIeg_IeyB_TR', symObjAddr: 0x0, symBinAddr: 0xA898, symSize: 0x2C }
-  - { offset: 0x5A4C9, size: 0x8, addend: 0x0, symName: '_$s7TuneURL12AudioMatcherC6sharedACvpZ', symObjAddr: 0x7918, symBinAddr: 0x29CD0, symSize: 0x0 }
+  - { offset: 0x5A4C9, size: 0x8, addend: 0x0, symName: '_$s7TuneURL12AudioMatcherC6sharedACvpZ', symObjAddr: 0x7918, symBinAddr: 0x29CD8, symSize: 0x0 }
   - { offset: 0x5A59F, size: 0x8, addend: 0x0, symName: '_$sIeg_IeyB_TR', symObjAddr: 0x0, symBinAddr: 0xA898, symSize: 0x2C }
   - { offset: 0x5A5B7, size: 0x8, addend: 0x0, symName: '_$s7TuneURL12AudioMatcherC6shared_WZ', symObjAddr: 0x2C, symBinAddr: 0xA8C4, symSize: 0x38 }
   - { offset: 0x5A62F, size: 0x8, addend: 0x0, symName: '_$s7TuneURL12AudioMatcherCMa', symObjAddr: 0x124, symBinAddr: 0xA9BC, symSize: 0x20 }
@@ -254,30 +254,30 @@ relocations:
   - { offset: 0x639EA, size: 0x8, addend: 0x0, symName: '_$s7TuneURL5MatchCSeAASe4fromxs7Decoder_p_tKcfCTW', symObjAddr: 0x1398, symBinAddr: 0x134C8, symSize: 0x54 }
   - { offset: 0x63A14, size: 0x8, addend: 0x0, symName: '_$s7TuneURL5MatchCSEAASE6encode2toys7Encoder_p_tKFTW', symObjAddr: 0x13EC, symBinAddr: 0x1351C, symSize: 0x20 }
   - { offset: 0x63A2E, size: 0x8, addend: 0x0, symName: '_$s7TuneURL5MatchC10CodingKeysO8rawValueAESgSS_tcfCTf4nd_n', symObjAddr: 0x1720, symBinAddr: 0x1384C, symSize: 0x5C }
-  - { offset: 0x63B44, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC6sharedACvpZ', symObjAddr: 0x9CA0, symBinAddr: 0x29CD8, symSize: 0x0 }
-  - { offset: 0x63D8F, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgSo13NSURLResponseCSgs5Error_pSgIeghggg_So6NSDataCSgAGSo7NSErrorCSgIeyBhyyy_TR', symObjAddr: 0xDA0, symBinAddr: 0x14648, symSize: 0xC8 }
-  - { offset: 0x63DA7, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerCMa', symObjAddr: 0xE94, symBinAddr: 0x1473C, symSize: 0x20 }
-  - { offset: 0x63DBB, size: 0x8, addend: 0x0, symName: '_$s10Foundation3URLVSgWOh', symObjAddr: 0xEF4, symBinAddr: 0x1475C, symSize: 0x40 }
-  - { offset: 0x63DDA, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4findys10_HashTableV6BucketV6bucket_Sb5foundtxSHRzlFSS_Tg5', symObjAddr: 0xF34, symBinAddr: 0x1479C, symSize: 0x64 }
-  - { offset: 0x63E28, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4find_9hashValues10_HashTableV6BucketV6bucket_Sb5foundtx_SitSHRzlFSS_Tg5', symObjAddr: 0xF98, symBinAddr: 0x14800, symSize: 0xE0 }
-  - { offset: 0x63EA0, size: 0x8, addend: 0x0, symName: '_$ss12_ArrayBufferV19_getElementSlowPathyyXlSiF7TuneURL5MatchC_Tg5', symObjAddr: 0x1078, symBinAddr: 0x148E0, symSize: 0x1D0 }
-  - { offset: 0x63FD2, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataV15_RepresentationOWOy', symObjAddr: 0x1430, symBinAddr: 0x14C98, symSize: 0x44 }
-  - { offset: 0x63FE6, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC16matchFingerprint3for5queue10completionySays5UInt8VG_So012OS_dispatch_G0CSgyAA5MatchCSgcSgtFySayAOGSgcfU_TA', symObjAddr: 0x14A0, symBinAddr: 0x14D08, symSize: 0x8 }
-  - { offset: 0x63FFA, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_SayAA5MatchCG_Tg5TA', symObjAddr: 0x16F4, symBinAddr: 0x14ECC, symSize: 0xC }
-  - { offset: 0x6400E, size: 0x8, addend: 0x0, symName: _block_copy_helper, symObjAddr: 0x1700, symBinAddr: 0x14ED8, symSize: 0x10 }
-  - { offset: 0x64022, size: 0x8, addend: 0x0, symName: _block_destroy_helper, symObjAddr: 0x1710, symBinAddr: 0x14EE8, symSize: 0x8 }
-  - { offset: 0x64036, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgWOe', symObjAddr: 0x1718, symBinAddr: 0x14EF0, symSize: 0x14 }
-  - { offset: 0x6404A, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_yyYbcfU_SayAA5MatchCG_Tg5TA', symObjAddr: 0x1780, symBinAddr: 0x14F58, symSize: 0x10 }
-  - { offset: 0x6405E, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgWOy', symObjAddr: 0x1790, symBinAddr: 0x14F68, symSize: 0x14 }
-  - { offset: 0x64072, size: 0x8, addend: 0x0, symName: '_$sSay7TuneURL5MatchCGSayxGSesSeRzlWl', symObjAddr: 0x1834, symBinAddr: 0x14F7C, symSize: 0x7C }
-  - { offset: 0x64086, size: 0x8, addend: 0x0, symName: '_$sSS_yptWOc', symObjAddr: 0x18F0, symBinAddr: 0x14FF8, symSize: 0x48 }
-  - { offset: 0x6409A, size: 0x8, addend: 0x0, symName: '_$sypWOb', symObjAddr: 0x1938, symBinAddr: 0x15040, symSize: 0x10 }
-  - { offset: 0x6420F, size: 0x8, addend: 0x0, symName: '_$sSD17dictionaryLiteralSDyxq_Gx_q_td_tcfCSS_ypTgm5Tf4g_n', symObjAddr: 0x1248, symBinAddr: 0x14AB0, symSize: 0xFC }
-  - { offset: 0x64347, size: 0x8, addend: 0x0, symName: '_$sSD17dictionaryLiteralSDyxq_Gx_q_td_tcfCSS_SDySSypGTgm5Tf4g_n', symObjAddr: 0x1344, symBinAddr: 0x14BAC, symSize: 0xEC }
-  - { offset: 0x645D8, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC16matchFingerprint3for5queue10completionySays5UInt8VG_So012OS_dispatch_G0CSgyAA5MatchCSgcSgtF', symObjAddr: 0x0, symBinAddr: 0x138A8, symSize: 0x65C }
-  - { offset: 0x64826, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC16matchFingerprint3for5queue10completionySays5UInt8VG_So012OS_dispatch_G0CSgyAA5MatchCSgcSgtFySayAOGSgcfU_', symObjAddr: 0x65C, symBinAddr: 0x13F04, symSize: 0x16C }
-  - { offset: 0x64A2C, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_SayAA5MatchCG_Tg5', symObjAddr: 0x7C8, symBinAddr: 0x14070, symSize: 0x210 }
-  - { offset: 0x64B22, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_yyYbcfU_SayAA5MatchCG_Tg5', symObjAddr: 0x9D8, symBinAddr: 0x14280, symSize: 0x3B8 }
-  - { offset: 0x64CBC, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerCfD', symObjAddr: 0xE68, symBinAddr: 0x14710, symSize: 0x2C }
-  - { offset: 0x64D0F, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFSayAA5MatchCG_Tgm5Tf4nnnd_n', symObjAddr: 0x14A8, symBinAddr: 0x14D10, symSize: 0x188 }
+  - { offset: 0x63B44, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC6sharedACvpZ', symObjAddr: 0xAAD8, symBinAddr: 0x29CE0, symSize: 0x0 }
+  - { offset: 0x63D8F, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgSo13NSURLResponseCSgs5Error_pSgIeghggg_So6NSDataCSgAGSo7NSErrorCSgIeyBhyyy_TR', symObjAddr: 0x10F4, symBinAddr: 0x1499C, symSize: 0xC8 }
+  - { offset: 0x63DA7, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerCMa', symObjAddr: 0x11E8, symBinAddr: 0x14A90, symSize: 0x20 }
+  - { offset: 0x63DBB, size: 0x8, addend: 0x0, symName: '_$s10Foundation3URLVSgWOh', symObjAddr: 0x1248, symBinAddr: 0x14AB0, symSize: 0x40 }
+  - { offset: 0x63DDA, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4findys10_HashTableV6BucketV6bucket_Sb5foundtxSHRzlFSS_Tg5', symObjAddr: 0x1288, symBinAddr: 0x14AF0, symSize: 0x64 }
+  - { offset: 0x63E28, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4find_9hashValues10_HashTableV6BucketV6bucket_Sb5foundtx_SitSHRzlFSS_Tg5', symObjAddr: 0x12EC, symBinAddr: 0x14B54, symSize: 0xE0 }
+  - { offset: 0x63EA0, size: 0x8, addend: 0x0, symName: '_$ss12_ArrayBufferV19_getElementSlowPathyyXlSiF7TuneURL5MatchC_Tg5', symObjAddr: 0x13CC, symBinAddr: 0x14C34, symSize: 0x1D0 }
+  - { offset: 0x63FD2, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataV15_RepresentationOWOy', symObjAddr: 0x1784, symBinAddr: 0x14FEC, symSize: 0x44 }
+  - { offset: 0x63FE6, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC16matchFingerprint3for5queue10completionySays5UInt8VG_So012OS_dispatch_G0CSgyAA5MatchCSgcSgtFySayAOGSgcfU_TA', symObjAddr: 0x17F4, symBinAddr: 0x1505C, symSize: 0x8 }
+  - { offset: 0x63FFA, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_SayAA5MatchCG_Tg5TA', symObjAddr: 0x1A48, symBinAddr: 0x15220, symSize: 0xC }
+  - { offset: 0x6400E, size: 0x8, addend: 0x0, symName: _block_copy_helper, symObjAddr: 0x1A54, symBinAddr: 0x1522C, symSize: 0x10 }
+  - { offset: 0x64022, size: 0x8, addend: 0x0, symName: _block_destroy_helper, symObjAddr: 0x1A64, symBinAddr: 0x1523C, symSize: 0x8 }
+  - { offset: 0x64036, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgWOe', symObjAddr: 0x1A6C, symBinAddr: 0x15244, symSize: 0x14 }
+  - { offset: 0x6404A, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_yyYbcfU_SayAA5MatchCG_Tg5TA', symObjAddr: 0x1AD4, symBinAddr: 0x152AC, symSize: 0x10 }
+  - { offset: 0x6405E, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgWOy', symObjAddr: 0x1AE4, symBinAddr: 0x152BC, symSize: 0x14 }
+  - { offset: 0x64072, size: 0x8, addend: 0x0, symName: '_$sSay7TuneURL5MatchCGSayxGSesSeRzlWl', symObjAddr: 0x1B88, symBinAddr: 0x152D0, symSize: 0x7C }
+  - { offset: 0x64086, size: 0x8, addend: 0x0, symName: '_$sSS_yptWOc', symObjAddr: 0x1C44, symBinAddr: 0x1534C, symSize: 0x48 }
+  - { offset: 0x6409A, size: 0x8, addend: 0x0, symName: '_$sypWOb', symObjAddr: 0x1C8C, symBinAddr: 0x15394, symSize: 0x10 }
+  - { offset: 0x642B2, size: 0x8, addend: 0x0, symName: '_$sSD17dictionaryLiteralSDyxq_Gx_q_td_tcfCSS_ypTgm5Tf4g_n', symObjAddr: 0x159C, symBinAddr: 0x14E04, symSize: 0xFC }
+  - { offset: 0x643EA, size: 0x8, addend: 0x0, symName: '_$sSD17dictionaryLiteralSDyxq_Gx_q_td_tcfCSS_SDySSypGTgm5Tf4g_n', symObjAddr: 0x1698, symBinAddr: 0x14F00, symSize: 0xEC }
+  - { offset: 0x6467B, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC16matchFingerprint3for5queue10completionySays5UInt8VG_So012OS_dispatch_G0CSgyAA5MatchCSgcSgtF', symObjAddr: 0x0, symBinAddr: 0x138A8, symSize: 0x65C }
+  - { offset: 0x648C9, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC16matchFingerprint3for5queue10completionySays5UInt8VG_So012OS_dispatch_G0CSgyAA5MatchCSgcSgtFySayAOGSgcfU_', symObjAddr: 0x65C, symBinAddr: 0x13F04, symSize: 0x16C }
+  - { offset: 0x64ACF, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_SayAA5MatchCG_Tg5', symObjAddr: 0x7C8, symBinAddr: 0x14070, symSize: 0x210 }
+  - { offset: 0x64BE6, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFyAI4DataVSg_So13NSURLResponseCSgs5Error_pSgtYbcfU_yyYbcfU_SayAA5MatchCG_Tg5', symObjAddr: 0x9D8, symBinAddr: 0x14280, symSize: 0x70C }
+  - { offset: 0x6501D, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerCfD', symObjAddr: 0x11BC, symBinAddr: 0x14A64, symSize: 0x2C }
+  - { offset: 0x65070, size: 0x8, addend: 0x0, symName: '_$s7TuneURL6ServerC11makeRequest33_9BC1A8034F2BE5068651418D3F569CA3LL_5queue12responseType10completiony10Foundation10URLRequestV_So012OS_dispatch_M0CSgxmyxSgcSgtSeRzlFSayAA5MatchCG_Tgm5Tf4nnnd_n', symObjAddr: 0x17FC, symBinAddr: 0x15064, symSize: 0x188 }
 ...
