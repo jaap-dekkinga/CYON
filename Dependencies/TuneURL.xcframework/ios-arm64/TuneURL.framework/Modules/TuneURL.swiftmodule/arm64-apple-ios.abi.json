@@ -1531,11 +1531,53 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "FloatLiteral",
+      "offset": 944,
+      "length": 5,
+      "value": "0.125"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "FloatLiteral",
+      "offset": 1066,
+      "length": 3,
+      "value": "0.1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "FloatLiteral",
+      "offset": 1250,
+      "length": 3,
+      "value": "6.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "FloatLiteral",
+      "offset": 1494,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1581,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioMatcher.swift",
       "kind": "BooleanLiteral",
       "offset": 572,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioMatcher.swift",
+      "kind": "IntegerLiteral",
+      "offset": 796,
+      "length": 1,
+      "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Detector.swift",
@@ -1567,10 +1609,59 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "IntegerLiteral",
+      "offset": 548,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
       "kind": "FloatLiteral",
-      "offset": 551,
+      "offset": 590,
       "length": 3,
       "value": "4.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "FloatLiteral",
+      "offset": 766,
+      "length": 5,
+      "value": "0.125"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "FloatLiteral",
+      "offset": 894,
+      "length": 3,
+      "value": "0.1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "FloatLiteral",
+      "offset": 1063,
+      "length": 3,
+      "value": "6.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "FloatLiteral",
+      "offset": 1198,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1291,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/StreamDetector.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1568,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Match.swift",
