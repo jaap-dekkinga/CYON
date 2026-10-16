@@ -18,6 +18,9 @@ class SearchViewController: BaseTableViewController {
 	// private static let debugTestFile = "podcast_intro"
 	// private static let debugTestFile = "what_is_tuneurl"
 
+	// Type "ashford" to start the Ashford House Affair CYOA test from its first episode.
+	private static let cyoaTestStartURL = URL(string: "https://tuneurl-choose-to-be-curious.s3.us-east-2.amazonaws.com/01_the_locked_room.mp3")!
+
 	// MARK: - Properties
 
 	fileprivate let cellID = "PodcastCell"
@@ -92,6 +95,14 @@ extension SearchViewController: UISearchBarDelegate {
 			}
 			NSLog("[CYON-TURL] SEARCH SHORTCUT triggered — playing \(Self.debugTestFile).wav")
 			Player.debugPlayFile(url, title: Self.debugTestFile)
+			searchController.dismiss(animated: true, completion: nil)
+			return
+		}
+		// --- Debug shortcut: type "ashford" to start the CYOA test story ---
+		if let text = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(), text == "ashford" {
+			NSLog("[CYON-CYOA] SEARCH SHORTCUT triggered — starting \(Self.cyoaTestStartURL.lastPathComponent)")
+			Player.shared.playCYOABranch(url: Self.cyoaTestStartURL, title: "The Locked Room")
+			Player.shared.maximizePlayer()
 			searchController.dismiss(animated: true, completion: nil)
 			return
 		}
