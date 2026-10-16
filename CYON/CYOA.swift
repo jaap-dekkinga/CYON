@@ -69,6 +69,12 @@ extension API {
 	/// (network, 404 "Mp3 does not exist…", unexpected JSON) so callers can
 	/// fall back to the trigger's default URL.
 	func getCYOAOptions(tuneURLID: Int, completion: @escaping ([CYOAOption]) -> Void) {
+		getCYOAOptions(tuneURLID: tuneURLID, attemptsLeft: 3, completion: completion)
+	}
+
+	/// The dev backend intermittently answers 400 "Error in processing your
+	/// request" for valid IDs, so retry a couple of times before giving up.
+	private func getCYOAOptions(tuneURLID: Int, attemptsLeft: Int, completion: @escaping ([CYOAOption]) -> Void) {
 		AF.request(
 			CYOAEndpoints.getCYOAMp3,
 			method: .get,
@@ -78,7 +84,14 @@ extension API {
 		.validate(statusCode: 200 ..< 300)
 		.responseData { response in
 			let options = Self.parseCYOAOptions(response.data)
-			NSLog("[CYON-CYOA] get-cyoa-mp3 id=\(tuneURLID) status=\(response.response?.statusCode ?? -1) options=\(options.count)")
+			let status = response.response?.statusCode ?? -1
+			NSLog("[CYON-CYOA] get-cyoa-mp3 id=\(tuneURLID) status=\(status) options=\(options.count) attemptsLeft=\(attemptsLeft - 1)")
+			if options.isEmpty, status != 404, attemptsLeft > 1 {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+					self.getCYOAOptions(tuneURLID: tuneURLID, attemptsLeft: attemptsLeft - 1, completion: completion)
+				}
+				return
+			}
 			DispatchQueue.main.async { completion(options) }
 		}
 	}

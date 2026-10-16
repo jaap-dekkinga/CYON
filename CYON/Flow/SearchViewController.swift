@@ -19,7 +19,7 @@ class SearchViewController: BaseTableViewController {
 	// private static let debugTestFile = "what_is_tuneurl"
 
 	// Type "ashford" to start the Ashford House Affair CYOA test from its first episode.
-	private static let cyoaTestStartURL = URL(string: "https://tuneurl-choose-to-be-curious.s3.us-east-2.amazonaws.com/01_the_locked_room.mp3")!
+	private static let cyoaTestStartURL = URL(string: "https://tuneurl-choose-to-be-curious.s3.us-east-2.amazonaws.com/cyoa/01_the_locked_room.mp3")!
 
 	// MARK: - Properties
 
