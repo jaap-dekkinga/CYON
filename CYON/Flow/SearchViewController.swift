@@ -18,6 +18,14 @@ class SearchViewController: BaseTableViewController {
 	// private static let debugTestFile = "podcast_intro"
 	// private static let debugTestFile = "what_is_tuneurl"
 
+	// Searches containing "cyon" also list the CYON_Example show on RSS.com, so its
+	// feed can be opened before Apple's podcast directory indexes it.
+	private static let cyonExamplePodcast = Podcast(json: [
+		"trackName": "CYON_Example",
+		"artistName": "CYON",
+		"feedUrl": "https://media.rss.com/cyon-example/feed.xml",
+	])
+
 	// Type "ashford" to start the Ashford House Affair CYOA test from its first episode.
 	private static let cyoaTestStartURL = URL(string: "https://tuneurl-choose-to-be-curious.s3.us-east-2.amazonaws.com/cyoa/01_the_locked_room.mp3")!
 
@@ -126,7 +134,13 @@ extension SearchViewController: UISearchBarDelegate {
 				return
 			}
 
-			self.podcasts = searchedPodcasts
+			var results = searchedPodcasts
+			let example = Self.cyonExamplePodcast
+			if searchText.lowercased().contains("cyon"),
+			   results.contains(where: { $0.feedURL == example.feedURL }) == false {
+				results.insert(example, at: 0)
+			}
+			self.podcasts = results
 			self.isSearching = false
 			self.headerString = "We couldn't find any results for\n\n\"\(searchText)\".\n\nPlease try again."
 			self.tableView.reloadData()
