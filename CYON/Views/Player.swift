@@ -820,6 +820,29 @@ class Player: UIViewController {
 	    }
 	}
 
+	// MARK: - CYOA support
+
+	/// Switch playback to the branch the listener chose (or the default on timeout).
+	///
+	/// Builds a new PlayerItem for the branch on the current podcast so the
+	/// normal download/cache path, labels, reporting, and TuneURL scanning all
+	/// apply -- the new file is scanned for its own choice moment, which is what
+	/// chains the story forward.
+	func playCYOABranch(url: URL, title: String?) {
+		NSLog("[CYON-CYOA] playing branch \(url.lastPathComponent)")
+
+		let podcast = playerItem?.podcast ?? Podcast(json: ["trackName": "Choose Your Own Adventure"])
+		var episode = playerItem?.episode ?? Episode(data: ["published_at": ""])
+		episode.url = url.absoluteString
+		episode.title = title ?? url.deletingPathExtension().lastPathComponent
+
+		// clear the finished choice so it can't re-trigger while the next file loads
+		tuneURLs.removeAll()
+		activeTuneURL = nil
+
+		setPlayerItem(PlayerItem(episode: episode, podcast: podcast))
+	}
+
 	// Testing purpose
 	/// Debug helper: play a local file directly (no download, no PlayerItem).
 	/// Skips DownloadCache since the file is already on disk.
