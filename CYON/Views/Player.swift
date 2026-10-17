@@ -89,6 +89,10 @@ class Player: UIViewController {
 
 	@objc private dynamic lazy var player = AVPlayer()
 
+	// download indicators over the artwork, shown while an episode downloads
+	private let downloadOverlay = DownloadProgressOverlay(compact: false)
+	private let miniDownloadOverlay = DownloadProgressOverlay(compact: true)
+
 	private var activeTuneURL: TuneURL.Match? {
 		didSet {
 			if ((activeTuneURL?.id ?? -1) != (oldValue?.id ?? -1)) {
@@ -184,6 +188,7 @@ class Player: UIViewController {
 
 	private func setupFullPlayer() {
 		episodeImage.layer.cornerRadius = 12
+		downloadOverlay.attach(to: episodeImage)
 		fullPlayer.alpha = 0
 		fullPlayer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleMaximizedPan(_:))))
 	}
@@ -225,8 +230,36 @@ class Player: UIViewController {
 			return
 		}
 
-		// get the podcast episode from the cache
-		DownloadCache.shared.cachedFile(for: playerItem, completion: startPlaying)
+		// get the podcast episode from the cache, showing progress while it downloads
+		showDownloadIndicator()
+		DownloadCache.shared.cachedFile(for: playerItem, progress: {
+			[weak self] fraction in
+			guard let self, self.playerItem == playerItem else { return }
+			self.downloadOverlay.setProgress(fraction)
+			self.miniDownloadOverlay.setProgress(fraction)
+		}, completion: {
+			[weak self] fileURL in
+			// ignore a download that finished after the listener moved on
+			guard let self, self.playerItem == playerItem else { return }
+			if fileURL == nil {
+				NSLog("[CYON] episode download failed: \(playerItem.episode.url ?? "-")")
+				self.downloadOverlay.showFailure()
+				self.miniDownloadOverlay.showFailure()
+			} else {
+				self.hideDownloadIndicator()
+			}
+			self.startPlaying(fileURL)
+		})
+	}
+
+	private func showDownloadIndicator() {
+		downloadOverlay.show()
+		miniDownloadOverlay.show()
+	}
+
+	private func hideDownloadIndicator() {
+		downloadOverlay.hide()
+		miniDownloadOverlay.hide()
 	}
 
 	private func startPlaying(_ fileURL: URL?) {
@@ -685,6 +718,7 @@ class Player: UIViewController {
 
 	private func setupMiniPlayer() {
 		miniEpisodeImage.layer.cornerRadius = 8
+		miniDownloadOverlay.attach(to: miniEpisodeImage)
 
 		// add the gesture recognizers
 		miniPlayer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(maximizePlayer)))
@@ -818,6 +852,29 @@ class Player: UIViewController {
 	        interestViewController?.dismiss(animated: true, completion: nil)
 	        interestViewController = nil
 	    }
+	}
+
+	// MARK: - CYOA support
+
+	/// Switch playback to the branch the listener chose (or the default on timeout).
+	///
+	/// Builds a new PlayerItem for the branch on the current podcast so the
+	/// normal download/cache path, labels, reporting, and TuneURL scanning all
+	/// apply -- the new file is scanned for its own choice moment, which is what
+	/// chains the story forward.
+	func playCYOABranch(url: URL, title: String?) {
+		NSLog("[CYON-CYOA] playing branch \(url.lastPathComponent)")
+
+		let podcast = playerItem?.podcast ?? Podcast(json: ["trackName": "Choose Your Own Adventure"])
+		var episode = playerItem?.episode ?? Episode(data: ["published_at": ""])
+		episode.url = url.absoluteString
+		episode.title = title ?? url.deletingPathExtension().lastPathComponent
+
+		// clear the finished choice so it can't re-trigger while the next file loads
+		tuneURLs.removeAll()
+		activeTuneURL = nil
+
+		setPlayerItem(PlayerItem(episode: episode, podcast: podcast))
 	}
 
 	// Testing purpose

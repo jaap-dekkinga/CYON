@@ -55,7 +55,7 @@ class DownloadCache {
 
 	// MARK: -
 
-	func cachedFile(for playerItem: PlayerItem, completion: @escaping (URL?) -> Void) {
+	func cachedFile(for playerItem: PlayerItem, progress progressHandler: ((Double) -> Void)? = nil, completion: @escaping (URL?) -> Void) {
 
 		// check if items should be removed from the cache first
 		var cachedItemCount = self.cachedItemCount
@@ -71,7 +71,7 @@ class DownloadCache {
 		}
 
 		// download and return the player item
-		download(playerItem: playerItem, userDownloaded: false, tryAWS: true, progress: nil, completion: {
+		download(playerItem: playerItem, userDownloaded: false, tryAWS: true, progress: progressHandler, completion: {
 			(download, error) in
 			DispatchQueue.main.async {
 				var cacheFileURL: URL?
