@@ -26,8 +26,8 @@ class SearchViewController: BaseTableViewController {
 		"feedUrl": "https://media.rss.com/cyon-example/feed.xml",
 	])
 
-	// Type "ashford" to start the Ashford House Affair CYOA test from its first episode.
-	private static let cyoaTestStartURL = URL(string: "https://tuneurl-choose-to-be-curious.s3.us-east-2.amazonaws.com/cyoa/01_the_locked_room.mp3")!
+	// Type "ashford" to start the Ashford House Affair CYOA test (revised v2 story, TuneURLs 525–532) from its first episode.
+	private static let cyoaTestStartURL = URL(string: "https://tuneurl-choose-to-be-curious.s3.us-east-2.amazonaws.com/cyoa_v2/01_the_locked_room.mp3")!
 
 	// MARK: - Properties
 
