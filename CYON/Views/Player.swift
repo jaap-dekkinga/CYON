@@ -89,6 +89,13 @@ class Player: UIViewController {
 
 	@objc private dynamic lazy var player = AVPlayer()
 
+	// download indicators over the artwork, shown while an episode downloads
+	private let downloadOverlay = DownloadProgressOverlay(compact: false)
+	private let miniDownloadOverlay = DownloadProgressOverlay(compact: true)
+
+	// test aid: shows what the TuneURL scan of the current episode found
+	private let scanStatusLabel = PaddedLabel()
+
 	private var activeTuneURL: TuneURL.Match? {
 		didSet {
 			if ((activeTuneURL?.id ?? -1) != (oldValue?.id ?? -1)) {
@@ -184,6 +191,24 @@ class Player: UIViewController {
 
 	private func setupFullPlayer() {
 		episodeImage.layer.cornerRadius = 12
+		downloadOverlay.attach(to: episodeImage)
+
+		// scan status pill under the artwork
+		scanStatusLabel.translatesAutoresizingMaskIntoConstraints = false
+		scanStatusLabel.font = .preferredFont(forTextStyle: .footnote)
+		scanStatusLabel.textColor = .white
+		scanStatusLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+		scanStatusLabel.textAlignment = .center
+		scanStatusLabel.numberOfLines = 2
+		scanStatusLabel.layer.cornerRadius = 8
+		scanStatusLabel.layer.masksToBounds = true
+		scanStatusLabel.isHidden = true
+		fullPlayer.addSubview(scanStatusLabel)
+		NSLayoutConstraint.activate([
+			scanStatusLabel.centerXAnchor.constraint(equalTo: episodeImage.centerXAnchor),
+			scanStatusLabel.bottomAnchor.constraint(equalTo: episodeImage.bottomAnchor, constant: -12),
+			scanStatusLabel.widthAnchor.constraint(lessThanOrEqualTo: episodeImage.widthAnchor, constant: -24),
+		])
 		fullPlayer.alpha = 0
 		fullPlayer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleMaximizedPan(_:))))
 	}
@@ -225,8 +250,65 @@ class Player: UIViewController {
 			return
 		}
 
-		// get the podcast episode from the cache
-		DownloadCache.shared.cachedFile(for: playerItem, completion: startPlaying)
+		// get the podcast episode from the cache, showing progress while it downloads
+		showDownloadIndicator()
+		DownloadCache.shared.cachedFile(for: playerItem, progress: {
+			[weak self] fraction in
+			guard let self, self.playerItem == playerItem else { return }
+			self.downloadOverlay.setProgress(fraction)
+			self.miniDownloadOverlay.setProgress(fraction)
+		}, completion: {
+			[weak self] fileURL in
+			// ignore a download that finished after the listener moved on
+			guard let self, self.playerItem == playerItem else { return }
+			if fileURL == nil {
+				NSLog("[CYON] episode download failed: \(playerItem.episode.url ?? "-")")
+				self.downloadOverlay.showFailure()
+				self.miniDownloadOverlay.showFailure()
+			} else {
+				self.hideDownloadIndicator()
+			}
+			self.startPlaying(fileURL)
+		})
+	}
+
+	private func showScanStatus(_ text: String, hideAfter seconds: Double?) {
+		scanStatusLabel.text = text
+		scanStatusLabel.isHidden = false
+		scanStatusLabel.alpha = 1
+		NSLog("[CYON-TURL] scan status: \(text)")
+		guard let seconds else { return }
+		let shown = text
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { [weak self] in
+			guard let self, self.scanStatusLabel.text == shown else { return }
+			UIView.animate(withDuration: 0.3, animations: { self.scanStatusLabel.alpha = 0 }) { _ in
+				if self.scanStatusLabel.text == shown { self.scanStatusLabel.isHidden = true }
+			}
+		}
+	}
+
+	private func reportScanResult(_ matches: [TuneURL.Match]) {
+		let choices = matches.filter { CYOA.isCYOA(type: $0.type) }
+		if let first = choices.first {
+			let at = Float64(first.time).formatDuration()
+			let more = choices.count > 1 ? " (+\(choices.count - 1) more)" : ""
+			showScanStatus("Choice moment at \(at), match \(first.matchPercentage)%\(more)", hideAfter: 8)
+		} else if matches.isEmpty {
+			showScanStatus("No choice moments found in this episode", hideAfter: 8)
+		} else {
+			let best = matches.max { $0.matchPercentage < $1.matchPercentage }!
+			showScanStatus("No choice moment matched (best: \(best.type) \(best.matchPercentage)%)", hideAfter: 8)
+		}
+	}
+
+	private func showDownloadIndicator() {
+		downloadOverlay.show()
+		miniDownloadOverlay.show()
+	}
+
+	private func hideDownloadIndicator() {
+		downloadOverlay.hide()
+		miniDownloadOverlay.hide()
 	}
 
 	private func startPlaying(_ fileURL: URL?) {
@@ -257,6 +339,7 @@ class Player: UIViewController {
 		// process the podcast for tuneurls
 		let scanStart = CFAbsoluteTimeGetCurrent()
 		NSLog("[CYON-TURL] processAudio START file=\(fileURL.lastPathComponent)")
+		showScanStatus("Looking for choice moments…", hideAfter: nil)
 		
 		Detector.processAudio(for: fileURL) { [weak self] matches in
 		    let elapsed = CFAbsoluteTimeGetCurrent() - scanStart
@@ -273,6 +356,10 @@ class Player: UIViewController {
 		        NSLog("[CYON-TURL]   match[\(i)] id=\(m.id) time=\(m.time)s matchPct=\(m.matchPercentage) name=\"\(m.name)\" type=\"\(m.type)\"")
 		    }
 		
+		    if !urlChanged {
+		        DispatchQueue.main.async { self.reportScanResult(matches) }
+		    }
+
 		    if (matches.count > 0), !urlChanged {
 		        DispatchQueue.main.async {
 		            self.tuneURLs = matches
@@ -685,6 +772,7 @@ class Player: UIViewController {
 
 	private func setupMiniPlayer() {
 		miniEpisodeImage.layer.cornerRadius = 8
+		miniDownloadOverlay.attach(to: miniEpisodeImage)
 
 		// add the gesture recognizers
 		miniPlayer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(maximizePlayer)))
@@ -820,6 +908,29 @@ class Player: UIViewController {
 	    }
 	}
 
+	// MARK: - CYOA support
+
+	/// Switch playback to the branch the listener chose (or the default on timeout).
+	///
+	/// Builds a new PlayerItem for the branch on the current podcast so the
+	/// normal download/cache path, labels, reporting, and TuneURL scanning all
+	/// apply -- the new file is scanned for its own choice moment, which is what
+	/// chains the story forward.
+	func playCYOABranch(url: URL, title: String?) {
+		NSLog("[CYON-CYOA] playing branch \(url.lastPathComponent)")
+
+		let podcast = playerItem?.podcast ?? Podcast(json: ["trackName": "Choose Your Own Adventure"])
+		var episode = playerItem?.episode ?? Episode(data: ["published_at": ""])
+		episode.url = url.absoluteString
+		episode.title = title ?? url.deletingPathExtension().lastPathComponent
+
+		// clear the finished choice so it can't re-trigger while the next file loads
+		tuneURLs.removeAll()
+		activeTuneURL = nil
+
+		setPlayerItem(PlayerItem(episode: episode, podcast: podcast))
+	}
+
 	// Testing purpose
 	/// Debug helper: play a local file directly (no download, no PlayerItem).
 	/// Skips DownloadCache since the file is already on disk.
@@ -840,5 +951,19 @@ class Player: UIViewController {
 	    // Reuse the private startPlaying — same file path AVPlayer + Detector.processAudio run.
 	    self.currentStartTime = 0.0
 	    self.startPlaying(fileURL)
+	}
+}
+
+/// UILabel with text insets, used for the scan status pill.
+final class PaddedLabel: UILabel {
+	var insets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+
+	override func drawText(in rect: CGRect) {
+		super.drawText(in: rect.inset(by: insets))
+	}
+
+	override var intrinsicContentSize: CGSize {
+		let size = super.intrinsicContentSize
+		return CGSize(width: size.width + insets.left + insets.right, height: size.height + insets.top + insets.bottom)
 	}
 }
