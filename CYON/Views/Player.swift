@@ -728,7 +728,7 @@ class Player: UIViewController {
 
 	// MARK: - Mini Player
 
-	func showMiniPlayer(above tabBar: UITabBar) {
+	func showMiniPlayer(above tabBarTop: NSLayoutYAxisAnchor) {
 		// get the content view from the visual effect view
 		guard let contentView = (self.view as? UIVisualEffectView)?.contentView,
 			  miniPlayer.superview == nil else {
@@ -741,7 +741,7 @@ class Player: UIViewController {
 		miniPlayerConstraints.append(miniPlayer.leftAnchor.constraint(equalTo: contentView.leftAnchor))
 		miniPlayerConstraints.append(miniPlayer.rightAnchor.constraint(equalTo: contentView.rightAnchor))
 		miniPlayerConstraints.append(miniPlayer.topAnchor.constraint(equalTo: contentView.topAnchor))
-		miniPlayerConstraints.append(miniPlayer.bottomAnchor.constraint(equalTo: tabBar.topAnchor))
+		miniPlayerConstraints.append(miniPlayer.bottomAnchor.constraint(equalTo: tabBarTop))
 
 		// activate the constraints
 		for constraint in miniPlayerConstraints {
