@@ -17,6 +17,7 @@ class MainViewController: UITabBarController {
 	private var playerCollapsedConstraint: NSLayoutConstraint!
 	private var playerMaximizedConstraint: NSLayoutConstraint!
 	private var playerMinimizedConstraint: NSLayoutConstraint!
+	private var playerPinnedToTabBar = false
 
 	// MARK: - Init
 
@@ -35,6 +36,11 @@ class MainViewController: UITabBarController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupPlayer()
+	}
+
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		pinPlayerToTabBar()
 	}
 
 	// MARK: - Tab bar anchor
@@ -68,11 +74,7 @@ class MainViewController: UITabBarController {
 
 		// setup the constraints on the player container
 		playerContainer.translatesAutoresizingMaskIntoConstraints = false
-		if self.tabBar.isDescendant(of: self.view) {
-			self.view.insertSubview(playerContainer, belowSubview: self.tabBar)
-		} else {
-			self.view.addSubview(playerContainer)
-		}
+		self.view.addSubview(playerContainer)
 		playerContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
 		playerContainer.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
 		playerContainer.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
@@ -80,14 +82,59 @@ class MainViewController: UITabBarController {
 		// create the maximized player constraints
 		playerMaximizedConstraint = playerContainer.topAnchor.constraint(equalTo: self.view.topAnchor)
 
-		// create the minimized player constraints
-		playerMinimizedConstraint = playerContainer.topAnchor.constraint(equalTo: self.tabBarTopAnchor, constant: -Player.miniPlayerHeight)
-
-		// create the collapsed player constraints
-		playerCollapsedConstraint = playerContainer.topAnchor.constraint(equalTo: self.tabBarTopAnchor, constant: -1)
+		// create the minimized and collapsed constraints, and keep the tab bar in front
+		pinPlayerToTabBar()
 
 		// initially collapsed
 		playerCollapsedConstraint.isActive = true
+	}
+
+	/// (Re)creates the constraints that sit the player on top of the tab bar, and brings the
+	/// tab bar in front of the player. On iPadOS 18 the tab bar is only added to this view
+	/// during the first layout pass, after viewDidLoad, so this runs again from
+	/// viewDidLayoutSubviews once it appears.
+	private func pinPlayerToTabBar() {
+		guard let playerContainer = player.view else {
+			return
+		}
+
+		let tabBarInView = tabBar.isDescendant(of: view)
+		if playerContainer.superview == view && tabBarInView {
+			bringTabBarToFront()
+		}
+		if playerPinnedToTabBar == tabBarInView && playerCollapsedConstraint != nil {
+			return
+		}
+		playerPinnedToTabBar = tabBarInView
+
+		// remember which state was active, then rebuild against the current anchor
+		let collapsedWasActive = playerCollapsedConstraint?.isActive ?? false
+		let minimizedWasActive = playerMinimizedConstraint?.isActive ?? false
+		playerCollapsedConstraint?.isActive = false
+		playerMinimizedConstraint?.isActive = false
+
+		playerMinimizedConstraint = playerContainer.topAnchor.constraint(equalTo: tabBarTopAnchor, constant: -Player.miniPlayerHeight)
+		playerCollapsedConstraint = playerContainer.topAnchor.constraint(equalTo: tabBarTopAnchor, constant: -1)
+
+		playerCollapsedConstraint.isActive = collapsedWasActive
+		playerMinimizedConstraint.isActive = minimizedWasActive
+
+		// the mini player is pinned to the same anchor, so re-pin it if it is showing
+		if minimizedWasActive {
+			player.hideMiniPlayer()
+			player.showMiniPlayer(above: tabBarTopAnchor)
+		}
+	}
+
+	/// Brings the tab bar (or the subview of `view` that contains it) in front of the player.
+	private func bringTabBarToFront() {
+		var front: UIView = tabBar
+		while let parent = front.superview, parent != view {
+			front = parent
+		}
+		if front.superview == view {
+			view.bringSubviewToFront(front)
+		}
 	}
 
 }
