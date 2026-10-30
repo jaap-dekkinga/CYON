@@ -26,6 +26,10 @@ import _SwiftConcurrencyShims
     get
     set
   }
+  public static var diagnosticHandler: ((Swift.String) -> Swift.Void)? {
+    get
+    set
+  }
   public static func setTrigger(_ audioFileURL: Foundation.URL)
   public static func startListening(matchHandler: @escaping (TuneURL.Match) -> Swift.Void)
   public static func stopListening()
