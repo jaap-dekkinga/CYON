@@ -19,22 +19,14 @@ class MainViewController: UITabBarController {
 	private var playerMinimizedConstraint: NSLayoutConstraint!
 	private var playerPinnedToTabBar = false
 
-	// MARK: - Init
-
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		useClassicTabBarOnPad()
-	}
-
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		useClassicTabBarOnPad()
-	}
-
 	// MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		// Must run after the view exists. Setting trait overrides in init(coder:) makes
+		// UITabBarController load its view while the storyboard is still decoding it,
+		// which crashes with "Could not load NIB in bundle".
+		useClassicTabBarOnPad()
 		setupPlayer()
 	}
 
