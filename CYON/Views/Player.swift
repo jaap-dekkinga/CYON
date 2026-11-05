@@ -726,31 +726,7 @@ class Player: UIViewController {
 		}
 	}
 
-	// MARK: - Mini Player
-
-	func showMiniPlayer(above tabBarTop: NSLayoutYAxisAnchor) {
-		// get the content view from the visual effect view
-		guard let contentView = (self.view as? UIVisualEffectView)?.contentView,
-			  miniPlayer.superview == nil else {
-			return
-		}
-
-		// add the mini player view
-		miniPlayer.translatesAutoresizingMaskIntoConstraints = false
-		contentView.addSubview(miniPlayer)
-		miniPlayerConstraints.append(miniPlayer.leftAnchor.constraint(equalTo: contentView.leftAnchor))
-		miniPlayerConstraints.append(miniPlayer.rightAnchor.constraint(equalTo: contentView.rightAnchor))
-		miniPlayerConstraints.append(miniPlayer.topAnchor.constraint(equalTo: contentView.topAnchor))
-		miniPlayerConstraints.append(miniPlayer.bottomAnchor.constraint(equalTo: tabBarTop))
-
-		// activate the constraints
-		for constraint in miniPlayerConstraints {
-			constraint.isActive = true
-		}
-
-		// show the mini player
-		miniPlayer.alpha = 1
-	}
+	v
 
 	func hideMiniPlayer() {
 		// safety check
