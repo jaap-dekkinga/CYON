@@ -485,6 +485,162 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "diagnosticHandler",
+            "printedName": "diagnosticHandler",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.String) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7TuneURL8ListenerC17diagnosticHandlerySScSgvpZ",
+            "mangledName": "$s7TuneURL8ListenerC17diagnosticHandlerySScSgvpZ",
+            "moduleName": "TuneURL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.String) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.String) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL8ListenerC17diagnosticHandlerySScSgvgZ",
+                "mangledName": "$s7TuneURL8ListenerC17diagnosticHandlerySScSgvgZ",
+                "moduleName": "TuneURL",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.String) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.String) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL8ListenerC17diagnosticHandlerySScSgvsZ",
+                "mangledName": "$s7TuneURL8ListenerC17diagnosticHandlerySScSgvsZ",
+                "moduleName": "TuneURL",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7TuneURL8ListenerC17diagnosticHandlerySScSgvMZ",
+                "mangledName": "$s7TuneURL8ListenerC17diagnosticHandlerySScSgvMZ",
+                "moduleName": "TuneURL",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "setTrigger",
             "printedName": "setTrigger(_:)",
@@ -1540,30 +1696,44 @@
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
       "kind": "FloatLiteral",
-      "offset": 1066,
+      "offset": 1261,
+      "length": 4,
+      "value": "0.18"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "FloatLiteral",
+      "offset": 1408,
       "length": 3,
       "value": "0.1"
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
       "kind": "FloatLiteral",
-      "offset": 1250,
+      "offset": 1592,
       "length": 3,
       "value": "6.0"
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
       "kind": "FloatLiteral",
-      "offset": 1494,
+      "offset": 1836,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
       "kind": "BooleanLiteral",
-      "offset": 1581,
+      "offset": 1923,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 2189,
+      "length": 36,
+      "value": "\"com.TuneURL.AudioCapture.detection\""
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioMatcher.swift",
@@ -1578,6 +1748,34 @@
       "offset": 796,
       "length": 1,
       "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioMatcher.swift",
+      "kind": "Array",
+      "offset": 1030,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioMatcher.swift",
+      "kind": "Array",
+      "offset": 1095,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioUtility.swift",
+      "kind": "FloatLiteral",
+      "offset": 12646,
+      "length": 5,
+      "value": "900.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/AudioUtility.swift",
+      "kind": "Array",
+      "offset": 12859,
+      "length": 20,
+      "value": "[(0.4, 1), (0.8, 2)]"
     },
     {
       "filePath": "\/Users\/runner\/work\/IOS_PoC\/IOS_PoC\/TuneURL (SDK)\/Detector.swift",
