@@ -91,7 +91,7 @@ class OptionSheet: UIViewController {
 
 
 	fileprivate func getActiveController() -> UIViewController? {
-		var topVC = UIApplication.shared.keyWindow?.rootViewController
+		var topVC = UIApplication.shared.currentKeyWindow?.rootViewController
 		while topVC?.presentedViewController != nil {
 			topVC = topVC?.presentedViewController
 		}
@@ -99,7 +99,7 @@ class OptionSheet: UIViewController {
 	}
 
 	fileprivate func addToViewHeirarchy() {
-		if let window = UIApplication.shared.keyWindow {
+		if let window = UIApplication.shared.currentKeyWindow {
 			if window.viewWithTag(tag) == nil {
 				view.tag = tag
 				window.addSubview(view)

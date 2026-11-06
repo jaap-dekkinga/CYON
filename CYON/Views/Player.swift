@@ -891,7 +891,7 @@ class Player: UIViewController {
 	    NSLog("[CYON-TURL] WINDOW OPEN id=\(tuneURL.id) time=\(tuneURL.time)s matchPct=\(tuneURL.matchPercentage) name=\"\(tuneURL.name)\" type=\"\(tuneURL.type)\"")
 	
 	    let viewController = InterestViewController.create(with: tuneURL, wasUserInitiated: false)
-	    AppDelegate.shared.window?.rootViewController?.present(viewController, animated: true)
+	    UIApplication.shared.currentKeyWindow?.rootViewController?.present(viewController, animated: true)
 	    interestViewController = viewController
 	}
 	
