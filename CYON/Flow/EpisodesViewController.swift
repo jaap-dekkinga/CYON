@@ -92,8 +92,8 @@ class EpisodesViewController: BaseTableViewController {
 
 	fileprivate func addedToDownloads() {
 		downloadProgress.removeFromSuperview()
-		let main = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-		main.viewControllers?[2].tabBarItem.badgeValue = "new"
+		let main = UIApplication.shared.currentKeyWindow?.rootViewController as? UITabBarController
+		main?.viewControllers?[2].tabBarItem.badgeValue = "new"
 		presentConfirmation(image: UIImage(named: "downloadAction")!, message: "Episode Downloaded")
 	}
 
